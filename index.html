@@ -1,0 +1,1283 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marouane Daouki · Portfolio IA &amp; Data Science</title>
+<meta name="description" content="Marouane Daouki, étudiant en Master d’Excellence en IA (Université Hassan II de Casablanca). Agents IA, RAG, vision par ordinateur et data science. Disponible pour un PFE début 2027.">
+<meta name="author" content="Marouane Daouki">
+<meta name="theme-color" content="#0A0F1F">
+<link rel="canonical" href="https://shirahex.github.io/marouane-daouki-portfolio/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230A0F1F'/%3E%3Cg fill='none' stroke='%23F4B740' stroke-width='2.4'%3E%3Crect x='10' y='10' width='20' height='20'/%3E%3Crect x='10' y='10' width='20' height='20' transform='rotate(45 20 20)'/%3E%3C/g%3E%3Ccircle cx='20' cy='20' r='3.4' fill='%234C62FF'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shirahex.github.io/marouane-daouki-portfolio/">
+<meta property="og:title" content="Marouane Daouki · Portfolio IA &amp; Data Science">
+<meta property="og:description" content="Agents IA, RAG, vision par ordinateur et data science. Projets réels, démos interactives. Disponible pour un PFE début 2027 à Casablanca ou Rabat.">
+<meta property="og:image" content="https://shirahex.github.io/marouane-daouki-portfolio/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shirahex.github.io/marouane-daouki-portfolio/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: night-blue page; a zellige + neural-net hero with parallax depth, then one "case file" per project
+   (story left, live visual right), a playable lab, a training-log timeline and a fixed loss HUD tied to scroll. */
+:root{
+  color-scheme:dark;
+  --ink:#0A0F1F;        /* page ground, Casablanca night */
+  --ink-2:#111A33;      /* raised surfaces */
+  --ink-3:#18234A;      /* hover / wells */
+  --line:#24305A;       /* hairlines */
+  --paper:#EFE8D8;      /* main text, warm plaster */
+  --muted:#98A2C2;      /* secondary text */
+  --majorelle:#4C62FF;  /* Majorelle blue, main accent */
+  --majorelle-2:#8FA0FF;
+  --saffron:#F4B740;    /* the one loud colour, used sparingly */
+  --good:#3CCB9F;
+  --bad:#EE6A55;
+  --display:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
+  --body:'Manrope',ui-sans-serif,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:14px;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:84px;overflow-x:clip}
+body{margin:0;background:var(--ink);color:var(--paper);font:400 16px/1.6 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+::selection{background:var(--saffron);color:var(--ink)}
+a{color:inherit}
+img{max-width:100%;display:block}
+figure{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--saffron);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono)}
+.eyebrow{font:600 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--majorelle-2)}
+h1,h2,h3{font-family:var(--display);line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(34px,5.4vw,64px);font-weight:800}
+h3{font-size:clamp(26px,3.2vw,40px);font-weight:800}
+p{margin:0}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--paper);max-width:62ch}
+.sub{color:var(--muted);max-width:62ch}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--ink) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 18px var(--display)}
+.brand svg{width:30px;height:30px;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.brand:hover svg{transform:rotate(180deg)}
+.navlinks{display:flex;gap:4px;margin-left:auto}
+.navlinks a{text-decoration:none;color:var(--muted);font-weight:500;font-size:15px;padding:8px 12px;border-radius:999px;transition:color .2s,background .2s}
+.navlinks a:hover,.navlinks a.on{color:var(--paper);background:var(--ink-2)}
+.navtools{display:flex;gap:8px;align-items:center}
+.pill-btn{border:1px solid var(--line);background:var(--ink-2);border-radius:999px;padding:7px 12px;font:600 13px var(--mono);transition:border-color .2s,transform .2s}
+.pill-btn:hover{border-color:var(--majorelle);transform:translateY(-1px)}
+.lang b{color:var(--saffron)}
+@media (max-width:820px){.navlinks{display:none}.navtools{margin-left:auto}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;isolation:isolate;padding-block:clamp(56px,9vw,120px) clamp(48px,7vw,90px)}
+.zl{position:absolute;inset:-12%;z-index:-3;pointer-events:none;will-change:transform}
+.zl svg{width:100%;height:100%}
+.zl.l1{opacity:.16}.zl.l2{opacity:.10}.zl.l3{opacity:.07}
+#net{position:absolute;inset:0;z-index:-2;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(70% 60% at 22% 40%,color-mix(in srgb,var(--ink) 92%,transparent) 0%,transparent 70%),linear-gradient(180deg,transparent 70%,var(--ink) 100%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:40px;align-items:end}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.avail{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 10px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--ink-2) 80%,transparent);font:500 14px var(--body);color:var(--paper)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 60%,transparent);animation:ping 2.2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.name{font-size:clamp(56px,11.5vw,156px);font-weight:800;letter-spacing:-.045em;line-height:.88;margin:22px 0 22px}
+.name .ln{display:block;white-space:nowrap}
+.name .ch{display:inline-block;transition:transform .35s cubic-bezier(.2,1.6,.4,1),color .3s}
+.name .ch:hover{transform:translateY(-.12em) rotate(-6deg);color:var(--saffron)}
+.name .ln2{color:var(--majorelle-2)}
+.typed{font:600 clamp(18px,2vw,24px) var(--display);margin-bottom:18px;min-height:1.4em}
+.typed .w{color:var(--saffron)}
+.caret{display:inline-block;width:.55ch;height:1.05em;background:var(--saffron);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:12px;border:1px solid var(--line);background:var(--ink-2);text-decoration:none;font-weight:700;transition:transform .2s,border-color .2s,background .2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--majorelle)}
+.btn.primary{background:var(--majorelle);border-color:var(--majorelle);color:#fff}
+.btn.primary:hover{background:#5d71ff}
+.btn .k{font:600 11px var(--mono);opacity:.75;border:1px solid currentColor;border-radius:5px;padding:1px 5px}
+.trainbox{border:1px solid var(--line);background:color-mix(in srgb,var(--ink-2) 85%,transparent);border-radius:var(--r);padding:18px;font-family:var(--mono);font-size:13px;backdrop-filter:blur(6px)}
+.trainbox .row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.trainbox .row:last-of-type{border-bottom:0}
+.trainbox .v{color:var(--paper);font-variant-numeric:tabular-nums}
+.trainbox .lbl{color:var(--muted)}
+#lossSpark{width:100%;height:46px;margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:56px}
+.stat{background:var(--ink);padding:18px 18px 16px}
+.stat .n{font:800 clamp(28px,3.4vw,40px)/1 var(--display);letter-spacing:-.02em}
+.stat .n em{font-style:normal;color:var(--saffron)}
+.stat .t{color:var(--muted);font-size:13.5px;margin-top:8px;line-height:1.4}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding-block:14px;background:var(--ink-2)}
+.track{display:flex;gap:36px;width:max-content;animation:slide 38s linear infinite;font:600 15px var(--mono);color:var(--muted)}
+.track.rev{animation-direction:reverse;margin-top:10px;color:var(--majorelle-2)}
+.track span{display:inline-flex;align-items:center;gap:36px;white-space:nowrap}
+.track span::after{content:"";width:8px;height:8px;background:var(--saffron);transform:rotate(45deg)}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding-block:clamp(72px,10vw,130px) 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:end;margin-bottom:56px}
+@media (max-width:820px){.sec-head{grid-template-columns:1fr}}
+
+/* ---------- project cases ---------- */
+.case{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start;padding-block:56px;border-top:1px solid var(--line)}
+.case.flip{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.case.flip .story{order:2}
+@media (max-width:900px){.case,.case.flip{grid-template-columns:1fr}.case.flip .story{order:0}}
+.story{position:sticky;top:96px;display:grid;gap:18px;min-width:0}
+@media (max-width:900px){.story{position:static}}
+.case-tag{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font:500 13px var(--mono);color:var(--muted)}
+.case-tag .idx{color:var(--saffron);font-weight:600}
+.metrics{display:grid;gap:10px}
+.metric{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--ink-2)}
+.metric b{font:800 26px/1 var(--display);color:var(--saffron);font-variant-numeric:tabular-nums;min-width:3.2ch}
+.metric span{color:var(--muted);font-size:14.5px;line-height:1.45}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 12.5px var(--mono);padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--paper);background:transparent;transition:background .2s,border-color .2s}
+.chip:hover{background:var(--ink-3);border-color:var(--majorelle)}
+.role{font-size:14.5px;color:var(--paper);padding-left:14px;border-left:2px solid var(--majorelle)}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.lnk{display:inline-flex;gap:8px;align-items:center;font:600 14px var(--body);text-decoration:none;padding:9px 14px;border-radius:10px;border:1px solid var(--line);transition:border-color .2s,background .2s}
+.lnk:hover{border-color:var(--saffron);background:var(--ink-2)}
+.lnk svg{width:16px;height:16px}
+.visual{display:grid;gap:22px;min-width:0}
+
+/* browser-frame screenshots */
+.frame{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--ink-2);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s;cursor:zoom-in}
+.frame .bar{display:flex;align-items:center;gap:6px;height:28px;padding:0 12px;background:var(--ink-3);border-bottom:1px solid var(--line)}
+.frame .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.frame .bar i:nth-child(1){background:#ef6a55}.frame .bar i:nth-child(2){background:#f4b740}.frame .bar i:nth-child(3){background:#3ccb9f}
+.frame .bar span{margin-left:10px;font:500 11px var(--mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frame img{width:100%;height:auto;aspect-ratio:var(--ar,16/10);object-fit:cover;object-position:top}
+.cap{font:500 12.5px var(--mono);color:var(--muted);margin-top:8px}
+.stack{position:relative;height:clamp(300px,42vw,520px)}
+.stack .frame{position:absolute;width:82%}
+.stack .frame:nth-child(1){left:0;top:0;z-index:1}
+.stack .frame:nth-child(2){right:0;top:16%;z-index:2}
+.stack .frame:nth-child(3){left:9%;top:38%;z-index:3}
+.stack .frame:hover{z-index:5}
+@media (max-width:560px){.stack{height:auto;display:grid;gap:14px}.stack .frame{position:relative;width:100%;inset:auto!important}}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.duo{grid-template-columns:1fr}}
+
+/* mini audit demo */
+.demo{border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--ink-2),var(--ink));padding:clamp(16px,2.4vw,24px);display:grid;gap:18px}
+.demo-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.demo-head h4{margin:0;font:800 20px var(--display)}
+.tag{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:var(--ink-3);color:var(--majorelle-2)}
+.ctrls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px}
+@media (max-width:560px){.ctrls{grid-template-columns:1fr}}
+.ctrl label{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);margin-bottom:6px}
+.ctrl label output{color:var(--paper);font:600 13px var(--mono);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--majorelle)}
+select{width:100%;background:var(--ink);color:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:14px}
+.agents{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;position:relative}
+.agent{display:grid;justify-items:center;gap:6px;text-align:center;font-size:11.5px;color:var(--muted);line-height:1.25;min-width:0;overflow-wrap:anywhere}
+@media (max-width:560px){.agent{font-size:9.5px}}
+.agent .ic{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);background:var(--ink);font:700 13px var(--mono);color:var(--muted);transition:all .3s}
+.agent.run .ic{border-color:var(--saffron);color:var(--saffron);animation:pulse 0.9s infinite}
+.agent.ok .ic{border-color:var(--good);background:color-mix(in srgb,var(--good) 18%,var(--ink));color:var(--good)}
+.agent.no .ic{border-color:var(--bad);color:var(--bad)}
+@keyframes pulse{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--saffron) 20%,transparent)}}
+.gauge{display:grid;gap:8px}
+.gbar{position:relative;height:12px;border-radius:999px;background:var(--ink-3);overflow:visible}
+.gfill{position:absolute;inset:0 auto 0 0;border-radius:999px;background:linear-gradient(90deg,var(--good),var(--saffron) 55%,var(--bad));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.gthr{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--paper)}
+.gthr::after{content:attr(data-l);position:absolute;top:-20px;left:50%;transform:translateX(-50%);font:600 10.5px var(--mono);color:var(--paper);white-space:nowrap}
+.gnums{display:flex;justify-content:space-between;align-items:baseline}
+.gnums .risk{font:800 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.verdict{font:700 15px var(--body);padding:5px 10px;border-radius:8px}
+.verdict.ok{background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good)}
+.verdict.no{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.log{font:13px/1.55 var(--mono);background:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:92px;color:var(--muted);overflow-wrap:anywhere}
+.log b{color:var(--paper);font-weight:600}.log .g{color:var(--good)}.log .y{color:var(--saffron)}.log .r{color:var(--bad)}
+.fine{font-size:12.5px;color:var(--muted)}
+
+/* qannouni */
+.compare{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;user-select:none;touch-action:pan-y;cursor:ew-resize}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left}
+.compare .top{clip-path:inset(0 0 0 var(--cut,50%))}
+.compare .handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:var(--saffron);transform:translateX(-1px)}
+.compare .handle::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--saffron);color:var(--ink);display:grid;place-items:center;font-weight:800}
+.compare .lab{position:absolute;bottom:10px;font:600 11px var(--mono);padding:4px 8px;border-radius:6px;background:rgba(10,15,31,.75)}
+.compare .lab.a{left:10px}.compare .lab.b{right:10px}
+.chat{border:1px solid var(--line);border-radius:var(--r);background:var(--ink-2);padding:16px;display:grid;gap:12px}
+.chat-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.chat-tabs button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:5px 12px;font:600 12.5px var(--mono);color:var(--muted)}
+.chat-tabs button[aria-pressed=true]{background:var(--majorelle);border-color:var(--majorelle);color:#fff}
+.msgs{display:grid;gap:10px;min-height:190px;align-content:start}
+.bub{max-width:88%;padding:10px 13px;border-radius:14px;font-size:14.5px;line-height:1.5}
+.bub.u{justify-self:end;background:var(--majorelle);color:#fff;border-bottom-right-radius:4px}
+.bub.a{justify-self:start;background:var(--ink);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bub[dir=rtl]{text-align:right;font-family:'Noto Naskh Arabic',var(--body)}
+.cite{display:inline-block;margin-top:6px;font:600 11.5px var(--mono);color:var(--saffron);border:1px solid color-mix(in srgb,var(--saffron) 50%,transparent);border-radius:6px;padding:2px 6px}
+.typing{display:inline-flex;gap:4px}.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:tb 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tb{50%{transform:translateY(-4px);opacity:.4}}
+.qlogo{width:76px;height:76px;border-radius:16px;border:1px solid var(--line)}
+
+/* carton */
+.scan{position:relative}
+.scan .frame::after{content:"";position:absolute;left:0;right:0;top:28px;height:60px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--good) 35%,transparent),transparent);border-bottom:2px solid var(--good);animation:scan 3.6s cubic-bezier(.6,0,.4,1) infinite;pointer-events:none;mix-blend-mode:screen}
+@keyframes scan{0%{transform:translateY(0)}50%{transform:translateY(calc(var(--h,380px) - 60px))}100%{transform:translateY(0)}}
+.stamp{position:absolute;right:-8px;top:-26px;z-index:4;width:118px;height:118px;border-radius:50%;background:var(--saffron);color:var(--ink);display:grid;place-items:center;text-align:center;font:800 12px/1.15 var(--display);padding:16px;transform:rotate(12deg);box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+.stamp svg{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);animation:spin 18s linear infinite}
+.stamp svg text{font:700 9px var(--mono);letter-spacing:.2em;fill:var(--ink)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* pipeline */
+.pipe{border:1px solid var(--line);border-radius:var(--r);background:var(--ink-2);padding:12px;overflow-x:auto}
+.pipe svg{display:block;min-width:620px;width:100%;height:auto}
+.pipe .node rect{fill:var(--ink);stroke:var(--line);stroke-width:1.2}
+.pipe .node.mine rect{stroke:var(--saffron);stroke-width:2}
+.pipe .node text{fill:var(--paper);font:600 12px var(--mono)}
+.pipe .node .s{fill:var(--muted);font:400 10px var(--mono)}
+.pipe .wire{fill:none;stroke:var(--line);stroke-width:2}
+.pipe .pk{fill:var(--majorelle-2)}
+.pipe .pk.y{fill:var(--saffron)}
+.counter{font:800 clamp(44px,6vw,72px)/1 var(--display);color:var(--saffron);font-variant-numeric:tabular-nums}
+
+/* molecule */
+.molbox{border:1px solid var(--line);border-radius:var(--r);background:radial-gradient(80% 80% at 50% 40%,var(--ink-3),var(--ink));overflow:hidden;position:relative}
+#mol{width:100%;height:clamp(260px,32vw,360px);display:block;cursor:grab}
+.mol-ui{position:absolute;left:12px;right:12px;bottom:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;pointer-events:none}
+.mol-ui>*{pointer-events:auto}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ink)}
+.seg button{border:0;background:transparent;padding:7px 12px;font:600 12px var(--mono);color:var(--muted)}
+.seg button[aria-pressed=true]{background:var(--majorelle);color:#fff}
+.smiles{font:500 12px var(--mono);color:var(--muted);background:rgba(10,15,31,.8);padding:6px 8px;border-radius:8px;max-width:100%;overflow-wrap:anywhere}
+.smiles .hl{color:var(--saffron);background:color-mix(in srgb,var(--saffron) 16%,transparent);border-radius:3px}
+
+/* also grid */
+.also{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding-block:56px;border-top:1px solid var(--line)}
+@media (max-width:820px){.also{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--ink-2);display:grid;gap:14px;align-content:start;min-width:0;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-4px);border-color:var(--majorelle)}
+.card h3{font-size:26px}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:600 12px var(--mono)}
+.flow span{padding:6px 9px;border:1px solid var(--line);border-radius:8px;background:var(--ink)}
+.flow i{font-style:normal;color:var(--saffron)}
+
+/* lab / game */
+.lab{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:24px;align-items:stretch}
+@media (max-width:900px){.lab{grid-template-columns:1fr}}
+.game{border:1px solid var(--line);border-radius:var(--r);background:var(--ink-2);overflow:hidden;position:relative}
+#golf{display:block;width:100%;height:clamp(260px,30vw,360px);touch-action:manipulation}
+.game-ui{display:grid;gap:14px;padding:16px;border-top:1px solid var(--line)}
+.game-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.game-row .ctrl{flex:1 1 220px}
+.hud-cards{display:grid;gap:12px;align-content:start}
+.hcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--ink-2)}
+.hcard .k{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hcard .v{font:800 30px/1.1 var(--display);font-variant-numeric:tabular-nums;margin-top:4px}
+.toast{position:absolute;left:50%;top:18px;transform:translate(-50%,-10px);background:var(--saffron);color:var(--ink);font:700 14px var(--body);padding:8px 14px;border-radius:10px;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* timeline */
+.tl{position:relative;display:grid;gap:0;margin-left:8px}
+.tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--majorelle),var(--saffron))}
+.ep{position:relative;display:grid;grid-template-columns:24px minmax(0,150px) minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px dashed var(--line)}
+@media (max-width:640px){.ep{grid-template-columns:24px minmax(0,1fr)}.ep .when{grid-column:2}.ep .what{grid-column:2}}
+.ep .knot{width:24px;height:24px;border-radius:50%;background:var(--ink);border:2px solid var(--majorelle);display:grid;place-items:center;font:700 10px var(--mono);color:var(--majorelle-2);z-index:1}
+.ep.next .knot{border-color:var(--saffron);color:var(--saffron);animation:pulse 1.4s infinite}
+.ep .when{font:600 13px var(--mono);color:var(--muted);padding-top:3px}
+.ep .what h4{margin:0 0 4px;font:700 18px var(--display)}
+.ep .what p{color:var(--muted);font-size:15px}
+.ep .what .loss{font:500 12px var(--mono);color:var(--majorelle-2);margin-top:6px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.sk{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:var(--ink-2);display:grid;gap:12px;align-content:start}
+.sk h4{margin:0;font:700 17px var(--display)}
+.langs{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.lg{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--ink-2);font-size:14.5px}
+.lg b{font-family:var(--display)}
+
+/* contact */
+.contact{padding-block:clamp(80px,12vw,150px) 60px;text-align:left}
+.big{font:800 clamp(44px,8.5vw,120px)/.92 var(--display);letter-spacing:-.04em;margin:18px 0 28px}
+.big span{color:var(--saffron)}
+.mailrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mail{font:600 clamp(16px,2.2vw,22px) var(--mono);padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--ink-2);user-select:all;overflow-wrap:anywhere}
+footer{border-top:1px solid var(--line);padding-block:24px calc(24px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* loss HUD */
+.hud{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--ink-2) 88%,transparent);backdrop-filter:blur(10px);font:500 12px var(--mono);color:var(--muted);transition:border-color .4s}
+.hud b{color:var(--paper);font-weight:600;font-variant-numeric:tabular-nums}
+.hud canvas{width:70px;height:22px}
+.hud{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s,border-color .4s}
+.hud.show{opacity:1;transform:none}
+.hud.done{border-color:var(--good)}
+.hud.done .st{color:var(--good)}
+@media (max-width:520px){.hud canvas{display:none}}
+
+/* terminal */
+.term-btn{position:fixed;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;width:48px;height:48px;border-radius:14px;border:1px solid var(--line);background:var(--ink-2);font:700 15px var(--mono);color:var(--saffron);transition:transform .2s,border-color .2s}
+.term-btn:hover{transform:translateY(-2px) rotate(-4deg);border-color:var(--saffron)}
+.term{position:fixed;inset:auto max(14px,env(safe-area-inset-right,0px)) calc(72px + env(safe-area-inset-bottom,0px)) auto;z-index:70;width:min(560px,calc(100vw - 28px));height:min(420px,70vh);border:1px solid var(--line);border-radius:14px;background:#070B17;box-shadow:0 40px 80px -30px #000;display:flex;flex-direction:column;overflow:hidden}
+.term-top{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--ink-2);font:600 12px var(--mono);color:var(--muted)}
+.term-top i{width:10px;height:10px;border-radius:50%;background:#ef6a55}.term-top i+i{background:#f4b740}.term-top i+i+i{background:#3ccb9f}
+.term-top button{margin-left:auto;border:0;background:transparent;color:var(--muted);font:600 12px var(--mono)}
+.term-out{flex:1;overflow:auto;padding:12px 14px;font:13px/1.6 var(--mono);color:#cfd6f0;white-space:pre-wrap;overflow-wrap:anywhere}
+.term-out .p{color:var(--saffron)}.term-out .g{color:var(--good)}.term-out .m{color:var(--muted)}.term-out .b{color:var(--majorelle-2)}
+.term form{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line);font:13px var(--mono)}
+.term form span{color:var(--saffron)}
+.term input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--paper);font:inherit}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:80;background:rgba(5,8,18,.92);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));cursor:zoom-out}
+.lb figure{margin:0;max-width:min(1300px,100%);display:grid;gap:10px}
+.lb img{max-height:82vh;width:auto;margin:0 auto;border-radius:10px;border:1px solid var(--line)}
+.lb figcaption{text-align:center;color:var(--muted);font:500 13px var(--mono)}
+
+/* confetti canvas */
+#fx{position:fixed;inset:0;pointer-events:none;z-index:90;width:100%;height:100%}
+
+/* entrance: content is visible at rest, the class only adds a short slide */
+.js .rv.in{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:translateY(26px)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Marouane Daouki, haut de page">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke="#F4B740" stroke-width="2.2"><rect x="9" y="9" width="22" height="22"/><rect x="9" y="9" width="22" height="22" transform="rotate(45 20 20)"/></g><circle cx="20" cy="20" r="3.4" fill="#4C62FF"/></svg>
+      <span>M.Daouki</span>
+    </a>
+    <div class="navlinks">
+      <a href="#projets" data-i18n="nav.projects">Projets</a>
+      <a href="#labo" data-i18n="nav.lab">Labo</a>
+      <a href="#parcours" data-i18n="nav.path">Parcours</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="navtools">
+      <button class="pill-btn lang" id="langBtn" aria-label="Changer de langue / Switch language"><b>FR</b> / EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="zl l1" data-px="0.035" data-py="0.18"><svg aria-hidden="true"><defs><pattern id="z1" width="120" height="120" patternUnits="userSpaceOnUse"><g fill="none" stroke="#4C62FF" stroke-width="1.4"><rect x="35" y="35" width="50" height="50"/><rect x="35" y="35" width="50" height="50" transform="rotate(45 60 60)"/><circle cx="60" cy="60" r="10"/><path d="M0 60H25M95 60H120M60 0V25M60 95V120"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#z1)"/></svg></div>
+  <div class="zl l2" data-px="0.07" data-py="0.32"><svg aria-hidden="true"><defs><pattern id="z2" width="220" height="220" patternUnits="userSpaceOnUse" patternTransform="rotate(8)"><g fill="none" stroke="#F4B740" stroke-width="1.2"><rect x="70" y="70" width="80" height="80"/><rect x="70" y="70" width="80" height="80" transform="rotate(45 110 110)"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#z2)"/></svg></div>
+  <div class="zl l3" data-px="0.12" data-py="0.5"><svg aria-hidden="true"><defs><pattern id="z3" width="360" height="360" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)"><g fill="none" stroke="#EFE8D8" stroke-width="1"><circle cx="180" cy="180" r="70"/><rect x="110" y="110" width="140" height="140" transform="rotate(45 180 180)"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#z3)"/></svg></div>
+  <canvas id="net" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="avail"><span class="dot"></span><span data-i18n="hero.avail">Disponible pour un PFE · début 2027 · 4 à 6 mois · Casablanca / Rabat</span></span>
+        <h1 class="name" aria-label="Marouane Daouki"><span class="ln" data-split>Marouane</span><span class="ln ln2" data-split>Daouki</span></h1>
+        <div class="typed" aria-live="polite"><span data-i18n="hero.build">Je construis</span> <span class="w" id="typedW">des agents IA</span><span class="caret"></span></div>
+        <p class="lead" data-i18n="hero.lead">Étudiant en Master d’Excellence en Intelligence Artificielle à l’Université Hassan II de Casablanca. Je conçois des systèmes d’IA de bout en bout : des agents qui vérifient leurs propres réponses, des assistants RAG qui citent leurs sources, et des modèles qui vont de la donnée brute jusqu’à une interface utilisable.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projets"><span data-i18n="hero.cta1">Voir les projets</span> <span aria-hidden="true">↓</span></a>
+          <button class="btn" id="trainBtn" type="button"><span id="trainLbl" data-i18n="hero.train">Entraîner le réseau</span> <span class="k">T</span></button>
+          <a class="btn" href="#contact" data-i18n="hero.cta2">Me contacter</a>
+        </div>
+      </div>
+      <aside class="trainbox" aria-label="Training monitor">
+        <div class="row"><span class="lbl">model</span><span class="v">marouane-v5 (Bac+5)</span></div>
+        <div class="row"><span class="lbl">epoch</span><span class="v" id="epochV">0 / 50</span></div>
+        <div class="row"><span class="lbl">loss</span><span class="v" id="lossV">2.3026</span></div>
+        <div class="row"><span class="lbl">acc</span><span class="v" id="accV">10.0 %</span></div>
+        <div class="row"><span class="lbl">status</span><span class="v" id="statV" data-i18n="hero.idle">en attente : clique sur « Entraîner »</span></div>
+        <canvas id="lossSpark" aria-hidden="true"></canvas>
+      </aside>
+    </div>
+
+    <div class="stats rv">
+      <div class="stat"><div class="n">7</div><div class="t" data-i18n="st.1">projets publics sur GitHub, de l’idée à l’interface</div></div>
+      <div class="stat"><div class="n"><em>78</em>%</div><div class="t" data-i18n="st.2">des refus de crédit reçoivent un chemin vérifié (AgentForge)</div></div>
+      <div class="stat"><div class="n">2<em>e</em></div><div class="t" data-i18n="st.3">de promotion, Licence d’Excellence IA (Mention Bien)</div></div>
+      <div class="stat"><div class="n">~300</div><div class="t" data-i18n="st.4">participants : Prix du Meilleur Projet Innovant</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="mq1"></div>
+  <div class="track rev" id="mq2"></div>
+</div>
+
+<main>
+<section class="sec" id="projets">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eyebrow" data-i18n="p.eye">Projets · captures réelles</div><h2 data-i18n="p.title">Des modèles qui sortent du notebook.</h2></div>
+      <p class="sub" data-i18n="p.sub">Chaque projet ci-dessous tourne vraiment : les captures viennent des applications lancées, et les petites démos interactives montrent l’idée de chaque système. Clique sur une capture pour l’agrandir.</p>
+    </div>
+
+    <!-- 01 AgentForge -->
+    <article class="case" id="agentforge">
+      <div class="story">
+        <div class="case-tag"><span class="idx">01</span><span data-i18n="af.tag">Audit de crédit multi-agent · en binôme · 2026</span></div>
+        <h3>AgentForge</h3>
+        <p data-i18n="af.pitch">Cinq agents IA qui appellent des outils pour auditer une décision de crédit : ils scorent le dossier, l’expliquent avec SHAP, cherchent les plus petits changements menant à une acceptation et testent l’équité. Un agent arbitre re-vérifie tout, peut rejeter une proposition, et transmet les cas sensibles à un humain.</p>
+        <div class="metrics">
+          <div class="metric"><b>78%</b><span data-i18n="af.m1">des refus reçoivent un chemin vérifié vers l’acceptation, contre 35 % pour modèle + DiCE sans agents</span></div>
+          <div class="metric"><b>0.806</b><span data-i18n="af.m2">AUC du modèle de scoring LightGBM</span></div>
+          <div class="metric"><b>22/22</b><span data-i18n="af.m3">dépendances à un attribut sensible détectées et escaladées</span></div>
+        </div>
+        <p class="role" data-i18n="af.role">Mon rôle : les cinq agents, le client LLM et ses garde-fous, la partie ML et l’interface.</p>
+        <div class="chips"><span class="chip">LangGraph</span><span class="chip">LLM · tool calling</span><span class="chip">LightGBM</span><span class="chip">SHAP</span><span class="chip">DiCE</span><span class="chip">FastAPI</span><span class="chip">SQLite checkpoints</span><span class="chip">React</span></div>
+        <div class="links"><a class="lnk" href="https://github.com/shirahex/agentforge-credit-audit" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span data-i18n="code">Voir le code</span></a></div>
+      </div>
+      <div class="visual">
+        <div class="stack" data-depth="0.025">
+          <figure class="frame" data-tilt style="--ar:1360/880" data-cap="AgentForge · nouvel audit"><div class="bar"><i></i><i></i><i></i><span>agentforge · nouvel audit</span></div><img src="img/af-new.webp" alt="AgentForge : écran de création d’un audit de crédit" loading="lazy" width="1360" height="880"></figure>
+          <figure class="frame" data-tilt style="--ar:1360/880" data-cap="AgentForge · boucle d’audit, l’arbitre rejette une proposition"><div class="bar"><i></i><i></i><i></i><span>agentforge · audit en cours</span></div><img src="img/af-loop.webp" alt="AgentForge : les agents en action, refus à 57 %" loading="lazy" width="1360" height="880"></figure>
+          <figure class="frame" data-tilt style="--ar:1360/880" data-cap="AgentForge · résultat et piste d’audit"><div class="bar"><i></i><i></i><i></i><span>agentforge · résultat</span></div><img src="img/af-result.webp" alt="AgentForge : résultat d’audit avec piste d’audit" loading="lazy" width="1360" height="880"></figure>
+        </div>
+
+        <div class="demo" id="audit">
+          <div class="demo-head"><h4 data-i18n="d.title">Lance un mini-audit</h4><span class="tag" data-i18n="d.tag">démo jouet dans le navigateur</span></div>
+          <div class="ctrls">
+            <div class="ctrl"><label for="dAmt"><span data-i18n="d.amt">Montant</span><output id="oAmt">4 500 DM</output></label><input type="range" id="dAmt" min="500" max="15000" step="250" value="4500"></div>
+            <div class="ctrl"><label for="dDur"><span data-i18n="d.dur">Durée</span><output id="oDur">36</output></label><input type="range" id="dDur" min="6" max="60" step="3" value="36"></div>
+            <div class="ctrl"><label for="dChk" data-i18n="d.chk">Compte courant</label><select id="dChk"><option value="neg" data-i18n="d.chk1">À découvert (&lt; 0 DM)</option><option value="low">0 à 200 DM</option><option value="high">≥ 200 DM</option><option value="none" data-i18n="d.chk4">Pas de compte courant</option></select></div>
+            <div class="ctrl"><label for="dHist" data-i18n="d.hist">Historique de crédit</label><select id="dHist"><option value="ok" data-i18n="d.h1">Remboursements à l’heure</option><option value="late" data-i18n="d.h2">Retards passés</option></select></div>
+          </div>
+          <div class="gauge">
+            <div class="gnums"><span class="risk" id="dRisk">--</span><span class="verdict" id="dVerdict" hidden></span></div>
+            <div class="gbar"><div class="gfill" id="dFill" style="width:0%"></div><div class="gthr" style="left:26%" data-l="seuil 26 %"></div></div>
+          </div>
+          <div class="agents" id="agents">
+            <div class="agent"><div class="ic">1</div><span>Analyste-Dossier</span></div>
+            <div class="agent"><div class="ic">2</div><span>Modèle-Scoring</span></div>
+            <div class="agent"><div class="ic">3</div><span>Générateur-Contrefactuels</span></div>
+            <div class="agent"><div class="ic">4</div><span>Vérificateur-Équité</span></div>
+            <div class="agent"><div class="ic">5</div><span>Arbitre &amp; Rédacteur</span></div>
+          </div>
+          <button class="btn primary" id="runAudit" type="button" style="justify-self:start"><span data-i18n="d.run">Lancer l’audit</span> <span aria-hidden="true">▶</span></button>
+          <div class="log" id="dLog" aria-live="polite"><span data-i18n="d.ready">Règle les curseurs puis lance l’audit. Chaque agent écrit ici ce qu’il fait.</span></div>
+          <p class="fine" data-i18n="d.fine">Une formule simplifiée imite le déroulé dans ta page. Le vrai projet utilise un modèle LightGBM, de vrais agents LLM et des contrefactuels DiCE vérifiés.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 Qannouni -->
+    <article class="case flip" id="qannouni">
+      <div class="story">
+        <div class="case-tag"><span class="idx">02</span><span data-i18n="q.tag">Assistant juridique RAG · en binôme · 2025</span></div>
+        <div style="display:flex;gap:16px;align-items:center"><img class="qlogo" src="img/q-logo.webp" alt="Logo Qannouni" width="76" height="76"><h3>Qannouni</h3></div>
+        <p data-i18n="q.pitch">Donne accès en quelques secondes au Code pénal et au Code de procédure pénale marocains, pour les citoyens et les étudiants en droit. La question se pose en français, en arabe ou en darija ; une recherche hybride FAISS + BM25 retrouve les bons articles, et la réponse les cite.</p>
+        <div class="metrics">
+          <div class="metric"><b>2</b><span data-i18n="q.m1">codes juridiques structurés : pénal et procédure pénale</span></div>
+          <div class="metric"><b>3</b><span data-i18n="q.m2">langues de question : français, arabe, darija (avec dictionnaire de synonymes)</span></div>
+          <div class="metric"><b>1-2s</b><span data-i18n="q.m3">par réponse lors des tests, articles cités à l’appui</span></div>
+        </div>
+        <div class="chips"><span class="chip">RAG</span><span class="chip">Gemini</span><span class="chip">Embeddings</span><span class="chip">FAISS</span><span class="chip">BM25</span><span class="chip">Fuzzy matching</span><span class="chip">Flask</span></div>
+        <div class="links"><a class="lnk" href="https://github.com/shirahex/moroccan-legal-chatbot" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span data-i18n="code">Voir le code</span></a></div>
+      </div>
+      <div class="visual">
+        <div data-depth="0.05">
+          <div class="compare" id="cmp" role="slider" tabindex="0" aria-label="Comparer mode jour et mode nuit" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <img src="img/q-light.webp" alt="Qannouni en mode jour" width="1400" height="875">
+            <img class="top" src="img/q-dark.webp" alt="Qannouni en mode nuit" width="1400" height="875">
+            <div class="handle"></div>
+            <span class="lab a" data-i18n="q.day">Mode jour</span><span class="lab b" data-i18n="q.night">Mode nuit</span>
+          </div>
+          <p class="cap" data-i18n="q.cap">Interface lancée en local · glisse pour comparer les deux thèmes</p>
+        </div>
+        <div class="chat">
+          <div class="chat-tabs" role="group" aria-label="Langue de la question">
+            <button type="button" data-q="fr" aria-pressed="true">Français</button>
+            <button type="button" data-q="ar" aria-pressed="false">العربية</button>
+            <button type="button" data-q="da" aria-pressed="false">Darija</button>
+          </div>
+          <div class="msgs" id="msgs"></div>
+          <p class="fine" data-i18n="q.fine">Exemple d’échange pour illustrer le fonctionnement (question, articles retrouvés, réponse sourcée).</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 Carton -->
+    <article class="case" id="carton">
+      <div class="story">
+        <div class="case-tag"><span class="idx">03</span><span data-i18n="c.tag">Vision par ordinateur · en binôme · 2025</span></div>
+        <h3>Carton Compliance Analyzer</h3>
+        <p data-i18n="c.pitch">Transforme une photo d’entrepôt en comptage de cartons, contrôles d’empilement et tableau de bord. YOLOv8 détecte les cartons, des règles géométriques OpenCV vérifient le débord, la hauteur des piles et l’alignement, puis l’application compte par zones et calcule un score de conformité.</p>
+        <div class="metrics">
+          <div class="metric"><b>#1</b><span data-i18n="c.m1">Prix du Meilleur Projet Innovant, sur environ 300 participants</span></div>
+          <div class="metric"><b>4</b><span data-i18n="c.m2">analyses : détection, débord entre cartons, piles, comptage par zones</span></div>
+        </div>
+        <div class="chips"><span class="chip">YOLOv8</span><span class="chip">OpenCV</span><span class="chip">Streamlit</span><span class="chip">Plotly</span><span class="chip">Pandas</span></div>
+        <div class="links"><a class="lnk" href="https://github.com/shirahex/warehouse-management-app" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span data-i18n="code">Voir le code et la démo vidéo</span></a></div>
+      </div>
+      <div class="visual">
+        <div class="scan" data-depth="0.05">
+          <div class="stamp" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="circ" d="M50 50m-40 0a40 40 0 1 1 80 0a40 40 0 1 1-80 0"/></defs><text><textPath href="#circ">BEST INNOVATIVE PROJECT · ~300 ·</textPath></text></svg><span data-i18n="c.stamp">Meilleur projet innovant</span></div>
+          <figure class="frame" data-tilt style="--ar:1400/724" data-cap="Carton Analyzer · image analysée, cartons détectés et score"><div class="bar"><i></i><i></i><i></i><span>carton analyzer · analyse</span></div><img src="img/wh-scan.webp" alt="Carton Analyzer : cartons détectés avec boîtes englobantes et score de conformité" loading="lazy" width="1400" height="724"></figure>
+        </div>
+        <figure class="frame" data-tilt style="--ar:1400/724" data-cap="Carton Analyzer · tableau de bord des analyses"><div class="bar"><i></i><i></i><i></i><span>carton analyzer · dashboard</span></div><img src="img/wh-dash.webp" alt="Carton Analyzer : tableau de bord avec conformité moyenne de 97,5 %" loading="lazy" width="1400" height="724"></figure>
+        <p class="cap" data-i18n="c.cap">Images tirées de la démo enregistrée de l’application</p>
+      </div>
+    </article>
+
+    <!-- 04 PipelineForge -->
+    <article class="case flip" id="pipelineforge">
+      <div class="story">
+        <div class="case-tag"><span class="idx">04</span><span data-i18n="pf.tag">Data pipeline et RAG biomédical · équipe de 8 · 2026</span></div>
+        <h3>PipelineForge</h3>
+        <p data-i18n="pf.pitch">Un assistant de questions-réponses médicales fondé sur des articles de PubMed Central, construit en quatre sprints Agile. Ma contribution : l’ingestion, avec la collecte automatisée des articles via l’API PMC, sans doublon, et la préparation des métadonnées. L’équipe a ensuite branché le découpage, les contrôles qualité, Chroma, MLflow, Prefect et la CI.</p>
+        <div><div class="counter" id="pfCount">0</div><p class="sub" data-i18n="pf.count">articles scientifiques collectés sans doublon</p></div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">API PMC</span><span class="chip">ETL</span><span class="chip">Prefect</span><span class="chip">Chroma</span><span class="chip">MLflow</span><span class="chip">FastAPI</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span></div>
+        <div class="links"><a class="lnk" href="https://github.com/pipelineforge-mlops/pipelineforge-rag-assistant" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span data-i18n="code">Voir le code</span></a></div>
+      </div>
+      <div class="visual">
+        <div class="pipe" data-depth="0.04">
+          <svg viewBox="0 0 680 300" id="pipeSvg" role="img" aria-label="Pipeline PipelineForge : PubMed Central, ingestion, découpage, qualité, Chroma, RAG, API, avec MLflow et Prefect">
+            <g class="wires">
+              <path class="wire" id="w1" d="M95 70 H150"/>
+              <path class="wire" id="w2" d="M255 70 H300"/>
+              <path class="wire" id="w3" d="M405 70 H450"/>
+              <path class="wire" id="w4" d="M505 98 V140 H260 V182"/>
+              <path class="wire" id="w5" d="M315 210 H360"/>
+              <path class="wire" id="w6" d="M465 210 H510"/>
+              <path class="wire" id="w7" d="M412 238 V268"/>
+              <path class="wire" d="M120 250 C 200 250, 300 140, 350 98" stroke-dasharray="4 5"/>
+            </g>
+            <g class="node"><rect x="10" y="42" width="85" height="56" rx="10"/><text x="52" y="66" text-anchor="middle">PMC</text><text class="s" x="52" y="84" text-anchor="middle">PubMed Central</text></g>
+            <g class="node mine"><rect x="150" y="42" width="105" height="56" rx="10"/><text x="202" y="66" text-anchor="middle">Ingestion</text><text class="s" x="202" y="84" text-anchor="middle" data-i18n="pf.mine">ma partie</text></g>
+            <g class="node"><rect x="300" y="42" width="105" height="56" rx="10"/><text x="352" y="66" text-anchor="middle">Chunking</text><text class="s" x="352" y="84" text-anchor="middle">transformation</text></g>
+            <g class="node"><rect x="450" y="42" width="110" height="56" rx="10"/><text x="505" y="66" text-anchor="middle">Qualité</text><text class="s" x="505" y="84" text-anchor="middle">schéma + tests</text></g>
+            <g class="node"><rect x="205" y="182" width="110" height="56" rx="10"/><text x="260" y="206" text-anchor="middle">Chroma</text><text class="s" x="260" y="224" text-anchor="middle">embeddings</text></g>
+            <g class="node"><rect x="360" y="182" width="105" height="56" rx="10"/><text x="412" y="206" text-anchor="middle">RAG</text><text class="s" x="412" y="224" text-anchor="middle">réponse sourcée</text></g>
+            <g class="node"><rect x="510" y="182" width="105" height="56" rx="10"/><text x="562" y="206" text-anchor="middle">FastAPI</text><text class="s" x="562" y="224" text-anchor="middle">démo web</text></g>
+            <g class="node"><rect x="362" y="268" width="100" height="28" rx="8"/><text x="412" y="287" text-anchor="middle">MLflow</text></g>
+            <g class="node"><rect x="20" y="236" width="100" height="28" rx="8"/><text x="70" y="255" text-anchor="middle">Prefect</text></g>
+            <g id="packets"></g>
+          </svg>
+        </div>
+        <p class="cap" data-i18n="pf.cap">Le flux du projet, animé : les paquets dorés sortent de l’étape que j’ai construite.</p>
+      </div>
+    </article>
+
+    <!-- 05 Molecular -->
+    <article class="case" id="molecules">
+      <div class="story">
+        <div class="case-tag"><span class="idx">05</span><span data-i18n="m.tag">Deep learning pour la chimie · 2026</span></div>
+        <h3 data-i18n="m.title">Prédiction de propriétés moléculaires</h3>
+        <p data-i18n="m.pitch">Une application de recherche qui compare deux réseaux de neurones sur graphes (GCN, GAT) et un Transformer moléculaire (ChemBERTa) sur quatre jeux MoleculeNet : ESOL, FreeSolv, BBBP et ClinTox. Une API FastAPI gère l’entraînement, la prédiction et l’explicabilité (attention, Integrated Gradients).</p>
+        <div class="metrics">
+          <div class="metric"><b>3</b><span data-i18n="m.m1">architectures comparées : GCN, GAT, ChemBERTa</span></div>
+          <div class="metric"><b>4</b><span data-i18n="m.m2">jeux de données MoleculeNet (régression et classification)</span></div>
+        </div>
+        <div class="chips"><span class="chip">PyTorch Geometric</span><span class="chip">GNN</span><span class="chip">Transformers</span><span class="chip">RDKit</span><span class="chip">Integrated Gradients</span><span class="chip">FastAPI</span></div>
+        <div class="links"><a class="lnk" href="https://github.com/shirahex/gnn-transformer-molecular-property-prediction-" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span data-i18n="code">Voir le code</span></a></div>
+      </div>
+      <div class="visual">
+        <div class="molbox" data-depth="0.04">
+          <canvas id="mol" aria-label="Molécule de caféine animée, vue par trois modèles"></canvas>
+          <div class="mol-ui">
+            <div class="seg" role="group" aria-label="Modèle">
+              <button type="button" data-m="gcn" aria-pressed="true">GCN</button>
+              <button type="button" data-m="gat" aria-pressed="false">GAT</button>
+              <button type="button" data-m="bert" aria-pressed="false">ChemBERTa</button>
+            </div>
+            <div class="smiles" id="smiles">CN1C=NC2=C1C(=O)N(C(=O)N2C)C</div>
+          </div>
+        </div>
+        <p class="cap" id="molCap" data-i18n="m.cap.gcn">GCN : chaque atome agrège l’information de ses voisins, couche après couche. Fais glisser pour tourner.</p>
+        <div class="duo">
+          <figure class="frame" data-tilt style="--ar:1400/875" data-cap="Molecular AI · configuration de l’entraînement"><div class="bar"><i></i><i></i><i></i><span>molecular ai · training</span></div><img src="img/mol-train.webp" alt="Page d’entraînement : choix du modèle, du jeu de données et des hyperparamètres" loading="lazy" width="1400" height="875"></figure>
+          <figure class="frame" data-tilt style="--ar:1400/875" data-cap="Molecular AI · générateur de poster de résultats"><div class="bar"><i></i><i></i><i></i><span>molecular ai · poster</span></div><img src="img/mol-poster.webp" alt="Générateur de poster des architectures et résultats" loading="lazy" width="1400" height="875"></figure>
+        </div>
+      </div>
+    </article>
+
+    <!-- 06 + 07 -->
+    <div class="also">
+      <article class="card rv">
+        <div class="case-tag"><span class="idx">06</span><span data-i18n="car.tag">Machine learning · en binôme · 2025</span></div>
+        <h3 data-i18n="car.title">Prix des voitures d’occasion au Maroc</h3>
+        <figure class="frame" data-tilt style="--ar:1400/1166" data-cap="Car Price Predictor · vraie prédiction : Dacia Logan 2015, diesel, 100 000 km, Casablanca"><div class="bar"><i></i><i></i><i></i><span>car price predictor · streamlit</span></div><img src="img/car-pred.webp" alt="Application Streamlit : estimation de 117 587 MAD pour une Dacia Logan 2015" loading="lazy" width="1400" height="1166"></figure>
+        <p class="sub" data-i18n="car.pitch">Estimation du prix à partir d’une douzaine de caractéristiques (marque, modèle, année, kilométrage…). Données collectées par un script de web scraping sur Avito.ma, nettoyage, modèle de régression et application Streamlit. La capture montre une vraie prédiction de l’application.</p>
+        <div class="chips"><span class="chip">Web scraping</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span><span class="chip">XGBoost</span><span class="chip">Streamlit</span></div>
+        <div class="links"><a class="lnk" href="https://github.com/shirahex/moroccan-car-price-predictor" target="_blank" rel="noopener"><span data-i18n="code">Voir le code</span> ↗</a></div>
+      </article>
+      <article class="card rv">
+        <div class="case-tag"><span class="idx">07</span><span data-i18n="dv.tag">Cloud et DevOps · lab académique</span></div>
+        <h3>Cloud DevOps Delivery Lab</h3>
+        <p class="sub" data-i18n="dv.pitch">Une API Flask testée (9 tests pytest), une image Docker multi-étapes, une CI GitHub Actions, des manifestes Kubernetes (probes, HPA, ingress) et une infrastructure AWS décrite avec Terraform et Ansible, avec une configuration Prometheus et Grafana.</p>
+        <div class="flow" aria-label="Chaîne de livraison"><span>git push</span><i>→</i><span>pytest</span><i>→</i><span>docker build</span><i>→</i><span>registry</span><i>→</i><span>k8s</span><i>→</i><span>grafana</span></div>
+        <div class="chips"><span class="chip">Flask</span><span class="chip">Pytest</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">Ansible</span><span class="chip">AWS</span></div>
+        <div class="links"><a class="lnk" href="https://github.com/shirahex/devops-project" target="_blank" rel="noopener"><span data-i18n="code">Voir le code</span> ↗</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="labo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eyebrow" data-i18n="g.eye">Labo · une pause ludique</div><h2 data-i18n="g.title">Golf de la descente de gradient.</h2></div>
+      <p class="sub" data-i18n="g.sub">Amène la balle jusqu’au drapeau, au minimum global. Choisis un taux d’apprentissage, puis fais des pas de gradient. Trop petit, la balle rampe ; trop grand, elle rebondit d’un versant à l’autre. Le momentum aide à sortir des minima locaux. Bloqué ? Le bouton « Indice » propose un bon η.</p>
+    </div>
+    <div class="lab">
+      <div class="game">
+        <canvas id="golf" aria-label="Paysage de perte avec une balle et un drapeau au minimum global"></canvas>
+        <div class="toast" id="toast"></div>
+        <div class="game-ui">
+          <div class="game-row">
+            <div class="ctrl"><label for="lr"><span data-i18n="g.lr">Taux d’apprentissage η</span><output id="lrO">0.30</output></label><input type="range" id="lr" min="0" max="100" value="55"></div>
+            <label class="pill-btn" style="display:inline-flex;gap:8px;align-items:center"><input type="checkbox" id="mom"> momentum 0.8</label>
+          </div>
+          <div class="game-row">
+            <button class="btn primary" id="stepBtn" type="button"><span data-i18n="g.step">Un pas</span> <span class="k">Espace</span></button>
+            <button class="btn" id="runBtn" type="button" data-i18n="g.run">10 pas</button>
+            <button class="btn" id="resetBtn" type="button" data-i18n="g.reset">Recommencer</button>
+            <button class="btn" id="hintBtn" type="button"><span aria-hidden="true">💡</span> <span data-i18n="g.hint">Indice</span></button>
+            <button class="btn" id="newBtn" type="button" data-i18n="g.new">Nouveau terrain</button>
+          </div>
+        </div>
+      </div>
+      <div class="hud-cards">
+        <div class="hcard"><div class="k" data-i18n="g.k1">Pas utilisés</div><div class="v" id="gSteps">0</div></div>
+        <div class="hcard"><div class="k">loss</div><div class="v" id="gLoss">0.000</div></div>
+        <div class="hcard"><div class="k" data-i18n="g.k3">Meilleur score</div><div class="v" id="gBest">--</div></div>
+        <div class="hcard"><div class="k" data-i18n="g.k4">Par du trou</div><div class="v">6</div><p class="fine" data-i18n="g.par">Réussir en 6 pas ou moins, c’est un « birdie ».</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="parcours">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eyebrow" data-i18n="t.eye">Parcours · journal d’entraînement</div><h2 data-i18n="t.title">Chaque étape a fait baisser la perte.</h2></div>
+      <p class="sub" data-i18n="t.sub">Un parcours technique solide (systèmes et réseaux), puis l’IA, en parallèle d’un poste à responsabilités en anglais. Prochaine epoch : le stage de fin d’études.</p>
+    </div>
+    <div class="tl" id="tl"></div>
+
+    <div class="sec-head rv" style="margin-top:96px;margin-bottom:28px">
+      <div><div class="eyebrow" data-i18n="s.eye">Boîte à outils</div><h2 data-i18n="s.title">Compétences.</h2></div>
+    </div>
+    <div class="skills" id="skills"></div>
+    <div class="langs">
+      <div class="lg"><b data-i18n="l.ar">Arabe</b> · <span data-i18n="l.ar2">langue maternelle</span></div>
+      <div class="lg"><b data-i18n="l.fr">Français</b> · <span data-i18n="l.fr2">courant</span></div>
+      <div class="lg"><b data-i18n="l.en">Anglais</b> · <span data-i18n="l.en2">avancé, certifié C1, usage professionnel quotidien</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="ct.eye">Contact</div>
+    <p class="big" data-i18n-html="ct.big">Prêt pour<br>l’<span>epoch</span> suivante.</p>
+    <p class="lead" style="margin-bottom:28px" data-i18n="ct.lead">Je cherche un stage de fin d’études en IA, Data Science ou IA générative, de 4 à 6 mois à partir de début 2027, à Casablanca ou Rabat. Écrivez-moi, je réponds vite.</p>
+    <div class="mailrow">
+      <span class="mail" id="mail">daoukimarouane@gmail.com</span>
+      <button class="btn primary" id="copyMail" type="button" data-i18n="ct.copy">Copier l’adresse</button>
+      <a class="btn" href="https://www.linkedin.com/in/daouki-marouane/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/shirahex" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Marouane Daouki · Casablanca</span>
+    <span class="mono" data-i18n="ft.egg">Astuce : tape la touche ` pour ouvrir le terminal, ou essaie le code Konami.</span>
+  </div>
+</footer>
+
+<div class="hud" id="hud" aria-hidden="true"><span class="st">epoch <b id="hEp">1/6</b></span><span>loss <b id="hLoss">2.30</b></span><canvas id="hSpark"></canvas></div>
+<button class="term-btn" id="termBtn" type="button" aria-label="Ouvrir le terminal">&gt;_</button>
+<div class="term" id="term" hidden role="dialog" aria-label="Terminal">
+  <div class="term-top"><i></i><i></i><i></i><span style="margin-left:8px">marouane@portfolio: ~</span><button type="button" id="termClose" aria-label="Fermer">esc ✕</button></div>
+  <div class="term-out" id="termOut"></div>
+  <form id="termForm" autocomplete="off"><span>❯</span><input id="termIn" aria-label="Commande" spellcheck="false"></form>
+</div>
+<div class="lb" id="lb" hidden><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script>
+document.documentElement.classList.add('js');
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const C = { maj: '#4C62FF', maj2: '#8FA0FF', saf: '#F4B740', paper: '#EFE8D8', muted: '#98A2C2', line: '#24305A', ink: '#0A0F1F', good: '#3CCB9F', bad: '#EE6A55' };
+
+/* ================= i18n ================= */
+const T = { fr: {}, en: {
+  'nav.projects':'Projects','nav.lab':'Lab','nav.path':'Journey','nav.contact':'Contact',
+  'hero.avail':'Open to a final-year internship · early 2027 · 4 to 6 months · Casablanca / Rabat',
+  'hero.build':'I build',
+  'hero.lead':'Master of Excellence in Artificial Intelligence student at Hassan II University, Casablanca. I design end-to-end AI systems: agents that check their own answers, RAG assistants that cite their sources, and models that go from raw data to a usable interface.',
+  'hero.cta1':'See the projects','hero.train':'Train the network','hero.cta2':'Get in touch','hero.idle':'waiting: click “Train”',
+  'st.1':'public projects on GitHub, from idea to interface','st.2':'of refused credit files get a verified path to approval (AgentForge)','st.3':'in class, Licence of Excellence in AI (with honours)','st.4':'participants: Best Innovative Project award',
+  'p.eye':'Projects · real screenshots','p.title':'Models that leave the notebook.','p.sub':'Every project below really runs: the screenshots come from the launched applications, and the small interactive demos show the idea behind each system. Click a screenshot to enlarge it.',
+  'code':'View the code',
+  'af.tag':'Multi-agent credit audit · pair project · 2026',
+  'af.pitch':'Five tool-calling AI agents audit a credit decision: they score the file, explain it with SHAP, search for the smallest changes that lead to approval and test fairness. An arbiter agent re-checks everything, can reject a proposal and hands sensitive cases to a human.',
+  'af.m1':'of refusals get a verified path to approval, vs 35% for model + DiCE without agents','af.m2':'AUC of the LightGBM scoring model','af.m3':'dependencies on a sensitive attribute caught and escalated',
+  'af.role':'My part: the five agents, the LLM client and its guardrails, the ML side and the interface.',
+  'd.title':'Run a mini audit','d.tag':'toy demo in your browser','d.amt':'Amount','d.dur':'Duration (months)','d.chk':'Checking account','d.chk1':'Overdrawn (< 0 DM)','d.chk4':'No checking account','d.hist':'Credit history','d.h1':'Paid on time','d.h2':'Past delays','d.run':'Run the audit','d.ready':'Set the sliders, then run the audit. Each agent writes here what it does.','d.fine':'A simplified formula mimics the flow in your page. The real project uses a LightGBM model, real LLM agents and verified DiCE counterfactuals.',
+  'q.tag':'RAG legal assistant · pair project · 2025','q.pitch':'Gives citizens and law students access, in seconds, to the Moroccan Penal Code and Code of Criminal Procedure. Questions can be asked in French, Arabic or Darija; hybrid FAISS + BM25 search finds the right articles and the answer cites them.',
+  'q.m1':'structured legal codes: penal and criminal procedure','q.m2':'question languages: French, Arabic, Darija (with a synonym map)','q.m3':'per answer in testing, with the articles cited','q.day':'Day mode','q.night':'Night mode','q.cap':'Interface running locally · drag to compare both themes','q.fine':'Example exchange to show how it works (question, retrieved articles, sourced answer).',
+  'c.tag':'Computer vision · pair project · 2025','c.pitch':'Turns a warehouse photo into carton counts, stacking checks and a dashboard. YOLOv8 detects the cartons, OpenCV geometric rules check overhang, stack height and alignment, then the app counts per zone and computes a compliance score.',
+  'c.m1':'Best Innovative Project award, among about 300 participants','c.m2':'analyses: detection, carton overhang, stacks, zone counts','c.stamp':'Best innovative project','c.cap':'Frames taken from the recorded demo of the application',
+  'pf.tag':'Data pipeline and biomedical RAG · team of 8 · 2026','pf.pitch':'A medical question-answering assistant grounded in PubMed Central articles, built over four Agile sprints. My part: ingestion, with automated collection of articles through the PMC API, without duplicates, and metadata preparation. The team then plugged in chunking, quality checks, Chroma, MLflow, Prefect and CI.','pf.count':'scientific articles collected without duplicates','pf.mine':'my part','pf.cap':'The project flow, animated: the gold packets leave the stage I built.',
+  'm.tag':'Deep learning for chemistry · 2026','m.title':'Molecular property prediction','m.pitch':'A research app comparing two graph neural networks (GCN, GAT) and a molecular Transformer (ChemBERTa) on four MoleculeNet datasets: ESOL, FreeSolv, BBBP and ClinTox. A FastAPI backend handles training, prediction and explainability (attention, Integrated Gradients).','m.m1':'architectures compared: GCN, GAT, ChemBERTa','m.m2':'MoleculeNet datasets (regression and classification)',
+  'm.cap.gcn':'GCN: each atom aggregates information from its neighbours, layer after layer. Drag to rotate.','m.cap.gat':'GAT: attention weights decide which neighbours matter most (thicker bonds = more attention).','m.cap.bert':'ChemBERTa: the molecule is read as a SMILES string, token by token, like a sentence.',
+  'car.tag':'Machine learning · pair project · 2025','car.title':'Used-car prices in Morocco','car.pitch':'Price estimation from a dozen features (brand, model, year, mileage…). Data collected with a web-scraping script on Avito.ma, cleaning, a regression model and a Streamlit app. The screenshot shows a real prediction from the app.',
+  'dv.tag':'Cloud and DevOps · academic lab','dv.pitch':'A tested Flask API (9 pytest cases), a multi-stage Docker image, GitHub Actions CI, Kubernetes manifests (probes, HPA, ingress) and AWS infrastructure described with Terraform and Ansible, with a Prometheus and Grafana setup.',
+  'g.eye':'Lab · a playful break','g.title':'Gradient descent golf.','g.sub':'Get the ball to the flag at the global minimum. Pick a learning rate, then take gradient steps. Too small and the ball crawls; too big and it bounces from one slope to the other. Momentum helps escape local minima. Stuck? The “Hint” button suggests a good η.','g.lr':'Learning rate η','g.step':'One step','g.run':'10 steps','g.reset':'Restart','g.new':'New course','g.hint':'Hint','g.k1':'Steps used','g.k3':'Best score','g.k4':'Par','g.par':'Sink it in 6 steps or fewer for a “birdie”.',
+  't.eye':'Journey · training log','t.title':'Every step brought the loss down.','t.sub':'A solid technical base (systems and networks), then AI, alongside a responsible role in English. Next epoch: the final-year internship.',
+  's.eye':'Toolbox','s.title':'Skills.','l.ar':'Arabic','l.ar2':'native','l.fr':'French','l.fr2':'fluent','l.en':'English','l.en2':'advanced, C1 certified, daily professional use',
+  'ct.eye':'Contact','ct.big':'Ready for<br>the next <span>epoch</span>.','ct.lead':'I am looking for a final-year internship in AI, Data Science or generative AI, 4 to 6 months from early 2027, in Casablanca or Rabat. Write to me, I reply fast.','ct.copy':'Copy address','ct.copied':'Copied ✓',
+  'ft.egg':'Tip: press the ` key to open the terminal, or try the Konami code.'
+}};
+let lang = 'fr';
+$$('[data-i18n]').forEach(el => T.fr[el.dataset.i18n] = el.textContent);
+$$('[data-i18n-html]').forEach(el => T.fr[el.dataset.i18nHtml] = el.innerHTML);
+Object.assign(T.fr, { 'ct.copied':'Copiée ✓', 'm.cap.gat':'GAT : des poids d’attention décident quels voisins comptent le plus (liaisons épaisses = plus d’attention).', 'm.cap.bert':'ChemBERTa : la molécule est lue comme une chaîne SMILES, jeton par jeton, comme une phrase.' });
+const t = k => (T[lang][k] ?? T.fr[k] ?? k);
+function applyLang(l){
+  lang = l; document.documentElement.lang = l;
+  $$('[data-i18n]').forEach(el => { const v = T[l][el.dataset.i18n] ?? T.fr[el.dataset.i18n]; if (v != null) el.textContent = v; });
+  $$('[data-i18n-html]').forEach(el => { const v = T[l][el.dataset.i18nHtml] ?? T.fr[el.dataset.i18nHtml]; if (v != null) el.innerHTML = v; });
+  $('#langBtn').innerHTML = l === 'fr' ? '<b>FR</b> / EN' : 'FR / <b>EN</b>';
+  buildTimeline(); buildSkills(); typedReset(); renderChat(curQ); setMolCap(); updateTrainStatus();
+  store.set('md-lang', l);
+}
+$('#langBtn').addEventListener('click', () => applyLang(lang === 'fr' ? 'en' : 'fr'));
+
+/* ================= name split ================= */
+$$('[data-split]').forEach(el => { el.innerHTML = [...el.textContent].map(c => `<span class="ch" aria-hidden="true">${c}</span>`).join(''); });
+
+/* ================= typed roles ================= */
+const ROLES = { fr: ['des agents IA', 'des assistants RAG', 'des modèles de vision', 'des pipelines de données', 'des tableaux de bord'], en: ['AI agents', 'RAG assistants', 'vision models', 'data pipelines', 'dashboards'] };
+let tyI = 0, tyJ = 0, tyDel = false, tyTimer;
+function typedReset(){ clearTimeout(tyTimer); tyI = 0; tyJ = ROLES[lang][0].length; tyDel = false; $('#typedW').textContent = ROLES[lang][0]; if (!RM) tyTimer = setTimeout(typeTick, 2200); }
+function typeTick(){
+  const w = ROLES[lang][tyI], el = $('#typedW');
+  if (!tyDel){ tyJ++; el.textContent = w.slice(0, tyJ); if (tyJ >= w.length){ tyDel = true; tyTimer = setTimeout(typeTick, 1800); return; } }
+  else { tyJ--; el.textContent = w.slice(0, tyJ); if (tyJ <= 0){ tyDel = false; tyI = (tyI + 1) % ROLES[lang].length; } }
+  tyTimer = setTimeout(typeTick, tyDel ? 35 : 70);
+}
+
+/* ================= marquee ================= */
+const MQ1 = ['Python','PyTorch','TensorFlow','Scikit-learn','XGBoost','LightGBM','Hugging Face','LangGraph','LangChain','RAG','FAISS','Chroma','YOLOv8','OpenCV','SHAP'];
+const MQ2 = ['SQL','MongoDB','Pandas','Spark','Tableau','Power BI','FastAPI','Flask','Docker','Kubernetes','MLflow','Prefect','GitHub Actions','Streamlit','Linux'];
+const mq = (id, a) => { const s = a.map(x => `<span>${x}</span>`).join(''); $(id).innerHTML = s + s; };
+mq('#mq1', MQ1); mq('#mq2', MQ2);
+
+/* ================= hero network ================= */
+const net = $('#net'), nctx = net.getContext('2d');
+let NW = 0, NH = 0, DPR = Math.min(2, devicePixelRatio || 1), nodes = [], training = false, trainT = 0, mouse = { x: -999, y: -999 };
+const LAYERS = [6, 9, 11, 9, 4];
+function sizeNet(){ const r = net.getBoundingClientRect(); NW = r.width; NH = r.height; net.width = NW * DPR; net.height = NH * DPR; nctx.setTransform(DPR, 0, 0, DPR, 0, 0); layoutTargets(); }
+function layoutTargets(){
+  const wide = NW > 900, x0 = wide ? NW * 0.56 : NW * 0.1, x1 = wide ? NW * 0.95 : NW * 0.9, y0 = NH * 0.14, y1 = NH * (wide ? 0.62 : 0.5);
+  let k = 0;
+  LAYERS.forEach((n, li) => { for (let i = 0; i < n; i++){ const nd = nodes[k++]; if (!nd) continue; nd.tx = x0 + (x1 - x0) * li / (LAYERS.length - 1); nd.ty = y0 + (y1 - y0) * (n === 1 ? .5 : i / (n - 1)); nd.layer = li; } });
+}
+function initNodes(){
+  const total = LAYERS.reduce((a, b) => a + b, 0); nodes = [];
+  for (let i = 0; i < total; i++) nodes.push({ x: Math.random() * NW, y: Math.random() * NH * 0.85, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35, r: 1.6 + Math.random() * 1.8, ph: Math.random() * 6.28 });
+  layoutTargets();
+}
+let pulses = [], lossHist = [], epoch = 0, loss = 2.3026, acc = 10;
+function drawNet(ts){
+  nctx.clearRect(0, 0, NW, NH);
+  const wide = NW > 900;
+  for (const n of nodes){
+    if (training){ n.x += (n.tx - n.x) * 0.06; n.y += (n.ty - n.y) * 0.06; }
+    else {
+      n.x += n.vx; n.y += n.vy;
+      const dx = n.x - mouse.x, dy = n.y - mouse.y, d2 = dx * dx + dy * dy;
+      if (d2 < 14000){ const f = (14000 - d2) / 14000 * 1.6; const d = Math.sqrt(d2) || 1; n.x += dx / d * f; n.y += dy / d * f; }
+      if (n.x < 0 || n.x > NW) n.vx *= -1; if (n.y < 0 || n.y > NH) n.vy *= -1;
+      n.x = Math.max(0, Math.min(NW, n.x)); n.y = Math.max(0, Math.min(NH, n.y));
+    }
+  }
+  if (training){
+    let k = 0; const idx = []; LAYERS.forEach(n => { idx.push([k, k + n]); k += n; });
+    nctx.lineWidth = 1;
+    for (let l = 0; l < LAYERS.length - 1; l++){
+      const [a0, a1] = idx[l], [b0, b1] = idx[l + 1];
+      for (let i = a0; i < a1; i++) for (let j = b0; j < b1; j++){
+        const w = Math.sin(i * 12.9898 + j * 78.233 + trainT * 0.02);
+        nctx.strokeStyle = w > 0 ? `rgba(76,98,255,${0.06 + 0.22 * w})` : `rgba(244,183,64,${0.04 + 0.14 * -w})`;
+        nctx.beginPath(); nctx.moveTo(nodes[i].x, nodes[i].y); nctx.lineTo(nodes[j].x, nodes[j].y); nctx.stroke();
+      }
+    }
+    if (trainT % 7 === 0){ const i = idx[0][0] + Math.floor(Math.random() * LAYERS[0]); pulses.push({ path: [i], l: 0, t: 0 }); }
+    pulses = pulses.filter(p => {
+      p.t += 0.045;
+      if (p.t >= 1){ if (p.l >= LAYERS.length - 2) return false; p.l++; p.t = 0; }
+      const [c0] = idx[p.l + 1]; if (p.path.length === p.l + 1) p.path.push(c0 + Math.floor(Math.random() * LAYERS[p.l + 1]));
+      const A = nodes[p.path[p.l]], B = nodes[p.path[p.l + 1]];
+      const x = A.x + (B.x - A.x) * p.t, y = A.y + (B.y - A.y) * p.t;
+      nctx.fillStyle = C.saf; nctx.beginPath(); nctx.arc(x, y, 2.6, 0, 6.29); nctx.fill();
+      return true;
+    });
+    trainT++;
+    if (trainT % 6 === 0 && epoch < 50){
+      epoch++; loss = Math.max(0.021, 2.3026 * Math.exp(-epoch / 9) + 0.02 + (Math.random() - .5) * 0.05 * Math.exp(-epoch / 15));
+      acc = Math.min(98.7, 10 + 88.7 * (1 - Math.exp(-epoch / 8)) + (Math.random() - .5) * 1.2);
+      lossHist.push(loss); updateTrainStatus(); drawSpark($('#lossSpark'), lossHist, C.saf);
+    }
+  } else {
+    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++){
+      const a = nodes[i], b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = dx * dx + dy * dy;
+      if (d < 17000){ nctx.strokeStyle = `rgba(143,160,255,${0.22 * (1 - d / 17000)})`; nctx.beginPath(); nctx.moveTo(a.x, a.y); nctx.lineTo(b.x, b.y); nctx.stroke(); }
+    }
+  }
+  for (const n of nodes){
+    const glow = training ? 1 : .7 + .3 * Math.sin(ts / 600 + n.ph);
+    nctx.fillStyle = training && n.layer === LAYERS.length - 1 ? C.saf : `rgba(239,232,216,${0.55 * glow})`;
+    nctx.beginPath(); nctx.arc(n.x, n.y, training ? 3.2 : n.r, 0, 6.29); nctx.fill();
+  }
+}
+function updateTrainStatus(){
+  $('#epochV').textContent = `${epoch} / 50`; $('#lossV').textContent = loss.toFixed(4); $('#accV').textContent = acc.toFixed(1) + ' %';
+  const s = $('#statV');
+  if (epoch >= 50) s.textContent = lang === 'fr' ? 'convergé ✓ prêt pour un PFE' : 'converged ✓ ready for an internship';
+  else if (training) s.textContent = lang === 'fr' ? 'entraînement…' : 'training…';
+  else if (epoch > 0) s.textContent = lang === 'fr' ? 'en pause' : 'paused';
+  else s.textContent = t('hero.idle');
+}
+function toggleTrain(){
+  training = !training;
+  if (training && epoch >= 50){ epoch = 0; loss = 2.3026; acc = 10; lossHist = []; }
+  if (!training) nodes.forEach(n => { n.vx = (Math.random() - .5) * .9; n.vy = (Math.random() - .5) * .9; });
+  $('#trainLbl').textContent = training ? (lang === 'fr' ? 'Mettre en pause' : 'Pause') : t('hero.train');
+  updateTrainStatus();
+}
+$('#trainBtn').addEventListener('click', toggleTrain);
+$('.hero').addEventListener('pointermove', e => { const r = net.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+$('.hero').addEventListener('pointerleave', () => { mouse.x = mouse.y = -999; });
+
+function drawSpark(cv, arr, color){
+  const r = cv.getBoundingClientRect(); if (!r.width) return;
+  cv.width = r.width * DPR; cv.height = r.height * DPR; const c = cv.getContext('2d'); c.setTransform(DPR, 0, 0, DPR, 0, 0);
+  c.clearRect(0, 0, r.width, r.height); if (arr.length < 2) return;
+  const mx = Math.max(...arr), mn = Math.min(...arr, 0);
+  const px = i => i / (arr.length - 1) * (r.width - 4) + 2, py = v => r.height - 3 - (v - mn) / ((mx - mn) || 1) * (r.height - 6);
+  c.beginPath(); arr.forEach((v, i) => i ? c.lineTo(px(i), py(v)) : c.moveTo(px(i), py(v)));
+  c.strokeStyle = color; c.lineWidth = 1.6; c.stroke();
+  c.lineTo(px(arr.length - 1), r.height); c.lineTo(px(0), r.height); c.closePath();
+  const g = c.createLinearGradient(0, 0, 0, r.height); g.addColorStop(0, color + '55'); g.addColorStop(1, color + '00'); c.fillStyle = g; c.fill();
+  c.fillStyle = color; c.beginPath(); c.arc(px(arr.length - 1), py(arr[arr.length - 1]), 2.4, 0, 6.29); c.fill();
+}
+
+/* ================= parallax ================= */
+let scrollY0 = 0, mx = 0, my = 0;
+addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
+const zls = $$('.zl'), depthEls = $$('[data-depth]');
+function parallax(){
+  const sy = scrollY;
+  zls.forEach(z => { const px = +z.dataset.px, py = +z.dataset.py; z.style.transform = `translate3d(${mx * px * 600}px, ${sy * py + my * px * 400}px, 0)`; });
+  if (innerWidth < 900){ depthEls.forEach(el => el.style.transform = ''); return; }
+  depthEls.forEach(el => { const r = el.getBoundingClientRect(); const c = r.top + r.height / 2 - innerHeight / 2; el.style.transform = `translate3d(0, ${-c * +el.dataset.depth}px, 0)`; });
+}
+
+/* tilt */
+$$('[data-tilt]').forEach(f => {
+  f.addEventListener('pointermove', e => { if (RM || e.pointerType !== 'mouse') return; const r = f.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; f.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateZ(10px)`; f.style.boxShadow = `${-x * 30}px ${30 - y * 20}px 60px -30px rgba(0,0,0,.8)`; });
+  f.addEventListener('pointerleave', () => { f.style.transform = ''; f.style.boxShadow = ''; });
+  f.addEventListener('click', () => openLb(f.querySelector('img'), f.dataset.cap));
+});
+
+/* lightbox */
+function openLb(img, cap){ $('#lbImg').src = img.src; $('#lbImg').alt = img.alt; $('#lbCap').textContent = cap || img.alt; $('#lb').hidden = false; }
+$('#lb').addEventListener('click', () => $('#lb').hidden = true);
+
+/* ================= HUD (scroll = training) ================= */
+const SECS = ['top', 'projets', 'labo', 'parcours', 'contact'];
+const hudHist = [];
+function hud(){
+  const max = document.documentElement.scrollHeight - innerHeight, p = max > 0 ? Math.min(1, scrollY / max) : 1;
+  const L = 2.3 * Math.exp(-4.2 * p) + 0.018;
+  const ep = Math.min(6, 1 + Math.floor(p * 5.999));
+  $('#hEp').textContent = `${ep}/6`; $('#hLoss').textContent = L.toFixed(3);
+  const done = p > 0.985; $('#hud').classList.toggle('done', done); $('#hud').classList.toggle('show', scrollY > innerHeight * 0.6);
+  $('#hud .st').firstChild.textContent = done ? (lang === 'fr' ? 'convergé ✓ ' : 'converged ✓ ') : 'epoch ';
+  $('#hEp').hidden = done;
+  const bucket = Math.round(p * 60);
+  hudHist[bucket] = L; drawSpark($('#hSpark'), hudHist.filter(v => v != null), C.maj2);
+  let cur = 'top'; SECS.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * .4) cur = id; });
+  $$('.navlinks a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur));
+  $('#nav').classList.toggle('scrolled', scrollY > 10);
+}
+
+/* ================= AgentForge mini audit ================= */
+const fmt = n => n.toLocaleString(lang === 'fr' ? 'fr-FR' : 'en-US');
+const dEls = { amt: $('#dAmt'), dur: $('#dDur'), chk: $('#dChk'), hist: $('#dHist') };
+const CHK = { neg: 0.85, low: 0.35, high: -0.45, none: -0.95 }, HIST = { ok: 0, late: 0.85 };
+const riskOf = (amt, dur, chk, hist) => 1 / (1 + Math.exp(-(-2.15 + 0.000085 * amt + 0.03 * dur + CHK[chk] + HIST[hist])));
+function readDemo(){ return { amt: +dEls.amt.value, dur: +dEls.dur.value, chk: dEls.chk.value, hist: dEls.hist.value }; }
+function showDemoVals(){ const v = readDemo(); $('#oAmt').textContent = fmt(v.amt) + ' DM'; $('#oDur').textContent = v.dur + (lang === 'fr' ? ' mois' : ' mo'); }
+Object.values(dEls).forEach(e => e.addEventListener('input', () => { showDemoVals(); $('#dVerdict').hidden = true; }));
+let auditRunning = false;
+const sleep = ms => new Promise(r => setTimeout(r, RM ? 0 : ms));
+async function runAudit(){
+  if (auditRunning) return; auditRunning = true;
+  const v = readDemo(), ag = $$('#agents .agent'), log = $('#dLog'), FR = lang === 'fr';
+  ag.forEach(a => a.className = 'agent'); $('#dVerdict').hidden = true; log.innerHTML = '';
+  const say = h => { log.innerHTML += h + '<br>'; };
+  const step = async (i, h, cls = 'ok', ms = 650) => { ag[i].classList.add('run'); await sleep(ms); ag[i].classList.remove('run'); ag[i].classList.add(cls); say(h); };
+  await step(0, `<b>Analyste-Dossier</b> ${FR ? 'dossier complet et cohérent' : 'file complete and consistent'} <span class="g">✓</span>`);
+  const r = riskOf(v.amt, v.dur, v.chk, v.hist);
+  $('#dFill').style.width = (r * 100).toFixed(1) + '%'; $('#dRisk').textContent = (r * 100).toFixed(0) + ' %';
+  await step(1, `<b>Modèle-Scoring</b> ${FR ? 'risque de défaut estimé' : 'estimated default risk'} <span class="y">${(r * 100).toFixed(0)} %</span> (${FR ? 'seuil' : 'threshold'} 26 %)`);
+  let best = null;
+  if (r >= 0.26){
+    const cands = [];
+    for (let d = v.dur; d >= 6; d -= 3) for (let a = v.amt; a >= 500; a -= 250){
+      const rr = riskOf(a, d, v.chk, v.hist);
+      if (rr < 0.26){ const cost = (v.dur - d) / v.dur + (v.amt - a) / v.amt; cands.push({ d, a, rr, cost }); break; }
+    }
+    cands.sort((x, y) => x.cost - y.cost); best = cands[0] || null;
+    if (best){
+      const first = cands.find(c => c.cost > best.cost * 1.25);
+      if (first){ await step(2, `<b>Générateur-Contrefactuels</b> ${FR ? 'proposition 1' : 'proposal 1'} : ${first.d} ${FR ? 'mois' : 'mo'}, ${fmt(first.a)} DM`, 'run', 600); ag[2].className = 'agent'; await sleep(250); await step(4, `<b>Arbitre</b> <span class="r">${FR ? 'rejeté : pas le plus petit changement' : 'rejected: not the smallest change'}</span>`, 'no', 600); ag[4].className = 'agent'; }
+      await step(2, `<b>Générateur-Contrefactuels</b> ${FR ? 'chemin trouvé' : 'path found'} : <span class="g">${best.d} ${FR ? 'mois' : 'mo'}, ${fmt(best.a)} DM → ${(best.rr * 100).toFixed(0)} %</span>`);
+    } else {
+      await step(2, `<b>Générateur-Contrefactuels</b> <span class="r">${FR ? 'aucun changement réaliste de durée ou de montant ne suffit' : 'no realistic change in duration or amount is enough'}</span>`, 'no');
+    }
+  } else {
+    await step(2, `<b>Générateur-Contrefactuels</b> ${FR ? 'rien à proposer, le dossier passe' : 'nothing to propose, the file passes'}`);
+  }
+  await step(3, `<b>Vérificateur-Équité</b> ${FR ? 'la décision ne change pas si un attribut protégé change' : 'the decision does not change when a protected attribute changes'} <span class="g">✓</span>`);
+  const okd = r < 0.26;
+  await step(4, `<b>Arbitre &amp; Rédacteur</b> ${okd ? (FR ? 'crédit accordé, lettre rédigée' : 'loan approved, letter drafted') : best ? (FR ? 'refus motivé avec un chemin vérifié vers l’acceptation' : 'refusal explained with a verified path to approval') : (FR ? 'refus motivé, envoi à un humain' : 'refusal explained, sent to a human')}`);
+  const vd = $('#dVerdict'); vd.hidden = false; vd.className = 'verdict ' + (okd ? 'ok' : 'no'); vd.textContent = okd ? (FR ? 'Accordé' : 'Approved') : (FR ? 'Refusé' : 'Refused');
+  if (best){ await sleep(700); dEls.dur.value = best.d; dEls.amt.value = best.a; showDemoVals(); log.innerHTML += `<span class="m">${FR ? '↳ curseurs placés sur le contrefactuel : relance l’audit pour vérifier.' : '↳ sliders moved to the counterfactual: run the audit again to verify.'}</span>`; }
+  auditRunning = false;
+}
+$('#runAudit').addEventListener('click', runAudit);
+
+/* ================= Qannouni compare + chat ================= */
+const cmp = $('#cmp');
+function setCut(p){ p = Math.max(0, Math.min(100, p)); cmp.style.setProperty('--cut', p + '%'); cmp.setAttribute('aria-valuenow', Math.round(p)); }
+let cmpDrag = false;
+cmp.addEventListener('pointerdown', e => { cmpDrag = true; cmp.setPointerCapture(e.pointerId); move(e); });
+cmp.addEventListener('pointermove', e => { if (cmpDrag || e.pointerType === 'mouse') move(e); });
+cmp.addEventListener('pointerup', () => cmpDrag = false);
+function move(e){ const r = cmp.getBoundingClientRect(); setCut((e.clientX - r.left) / r.width * 100); }
+cmp.addEventListener('keydown', e => { const v = +cmp.getAttribute('aria-valuenow'); if (e.key === 'ArrowLeft') setCut(v - 5); if (e.key === 'ArrowRight') setCut(v + 5); });
+const CHAT = {
+  fr: { q: 'Que dit le Code pénal sur le vol simple ?', a: 'Le vol simple est défini et puni par l’article 505 du Code pénal : soustraire frauduleusement une chose qui appartient à autrui. Les articles suivants prévoient des peines plus lourdes selon les circonstances (nuit, violence, réunion de plusieurs personnes…).', c: ['Code pénal · art. 505', 'Code pénal · art. 506 et suivants'], dir: 'ltr' },
+  ar: { q: 'ما هي عقوبة السرقة في القانون الجنائي المغربي؟', a: 'يعرّف الفصل 505 من القانون الجنائي السرقة بأنها اختلاس مال مملوك للغير بسوء نية، وتنص الفصول الموالية على عقوبات أشد حسب الظروف المشددة.', c: ['القانون الجنائي · الفصل 505', 'الفصول 506 وما يليها'], dir: 'rtl' },
+  da: { q: 'شنو كيقول القانون على السرقة؟', a: 'السرقة معرّفة فالفصل 505 ديال القانون الجنائي: هي أنك تاخد حاجة ديال شي حد آخر بنية الغش. والفصول اللي من بعد كيزيدو فالعقوبة إلا كانت شي ظروف بحال الليل ولا العنف.', c: ['القانون الجنائي · الفصل 505'], dir: 'rtl' }
+};
+let curQ = 'fr', chatTok = 0;
+async function renderChat(k){
+  curQ = k; const tok = ++chatTok, m = $('#msgs'), d = CHAT[k];
+  $$('.chat-tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.q === k));
+  m.innerHTML = `<div class="bub u" dir="${d.dir}">${d.q}</div>`;
+  const a = document.createElement('div'); a.className = 'bub a'; a.dir = d.dir; a.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>'; m.appendChild(a);
+  await sleep(900); if (tok !== chatTok) return;
+  a.textContent = '';
+  if (RM) a.textContent = d.a; else for (let i = 0; i < d.a.length; i += 3){ if (tok !== chatTok) return; a.textContent = d.a.slice(0, i + 3); await sleep(14); }
+  a.insertAdjacentHTML('beforeend', '<br>' + d.c.map(c => `<span class="cite">${c}</span>`).join(' '));
+}
+$$('.chat-tabs button').forEach(b => b.addEventListener('click', () => renderChat(b.dataset.q)));
+
+/* ================= Carton scan height ================= */
+function scanH(){ $$('.scan .frame').forEach(f => f.style.setProperty('--h', f.getBoundingClientRect().height + 'px')); }
+
+/* ================= PipelineForge packets ================= */
+const PK = [['w1', true], ['w2', false], ['w3', false], ['w4', false], ['w5', false], ['w6', false], ['w7', false]];
+const pkG = $('#packets'); let pks = [];
+function spawnPk(){ PK.forEach(([id, mine], i) => { const p = document.getElementById(id); pks.push({ p, len: p.getTotalLength(), t: -i * 0.18, mine, el: Object.assign(document.createElementNS('http://www.w3.org/2000/svg', 'circle'), {}) }); const c = pks[pks.length - 1]; c.el.setAttribute('r', mine ? 5 : 4); c.el.setAttribute('class', 'pk' + (mine ? ' y' : '')); pkG.appendChild(c.el); }); }
+function tickPk(){ pks = pks.filter(k => { k.t += 0.012; if (k.t > 1){ k.el.remove(); return false; } const tt = Math.max(0, k.t); const pt = k.p.getPointAtLength(tt * k.len); k.el.setAttribute('cx', pt.x); k.el.setAttribute('cy', pt.y); k.el.style.opacity = k.t < 0 ? 0 : 1; return true; }); }
+let pfCounted = false;
+function countUp(el, to, ms){ const t0 = performance.now(); const f = now => { const p = Math.min(1, (now - t0) / ms); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); }
+
+/* ================= Molecule (caffeine) ================= */
+const MOL = {
+  atoms: [['C',-3.0,1.4,0],['N',-1.8,0.7,0],['C',-1.9,-0.7,0],['N',-0.7,-1.3,0],['C',0.3,-0.4,0],['C',-0.4,0.9,0],['C',0.2,2.1,0],['O',-0.4,3.2,0],['N',1.6,2.0,0],['C',2.4,3.2,0.1],['C',2.3,0.8,0],['O',3.5,0.8,0],['N',1.6,-0.4,0],['C',2.3,-1.6,-0.1]],
+  bonds: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1],[5,6],[6,7],[6,8],[8,9],[8,10],[10,11],[10,12],[12,4],[12,13]],
+  tok: ['C','N1','C','=','N','C2','=','C1','C','(=O)','N','(','C','(=O)','N2','C',')','C']
+};
+const mc = $('#mol'), mctx = mc.getContext('2d');
+let molMode = 'gcn', rotY = 0.4, rotX = -0.25, molDrag = null, molT = 0, MW = 0, MH = 0;
+function sizeMol(){ const r = mc.getBoundingClientRect(); MW = r.width; MH = r.height; mc.width = MW * DPR; mc.height = MH * DPR; mctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+const ATC = { C: '#C9D1EA', N: '#8FA0FF', O: '#EE6A55' };
+function drawMol(){
+  mctx.clearRect(0, 0, MW, MH);
+  const s = Math.min(MW, MH) / 8.2, cx = MW / 2, cy = MH / 2 - 18;
+  const cyR = Math.cos(rotY), syR = Math.sin(rotY), cxR = Math.cos(rotX), sxR = Math.sin(rotX);
+  const P = MOL.atoms.map(([e, x, y, z]) => { y -= 0.9; const x1 = x * cyR + z * syR, z1 = -x * syR + z * cyR; const y1 = y * cxR - z1 * sxR, z2 = y * sxR + z1 * cxR; const f = 6 / (6 + z2); return { e, x: cx + x1 * s * f, y: cy + y1 * s * f, z: z2, f }; });
+  const hot = Math.floor(molT / 40) % MOL.atoms.length;
+  MOL.bonds.forEach(([a, b], i) => {
+    let w = 2.2, col = 'rgba(152,162,194,.55)';
+    if (molMode === 'gat'){ const att = 0.5 + 0.5 * Math.sin(molT * 0.03 + i * 1.7); w = 1 + att * 6; col = `rgba(244,183,64,${0.25 + att * 0.7})`; }
+    if (molMode === 'gcn' && (a === hot || b === hot)) { col = 'rgba(76,98,255,.95)'; w = 3.4; }
+    mctx.strokeStyle = col; mctx.lineWidth = w * P[a].f; mctx.beginPath(); mctx.moveTo(P[a].x, P[a].y); mctx.lineTo(P[b].x, P[b].y); mctx.stroke();
+  });
+  if (molMode === 'gcn'){
+    const ph = (molT % 40) / 40;
+    MOL.bonds.forEach(([a, b]) => { if (a !== hot && b !== hot) return; const o = a === hot ? b : a; const x = P[o].x + (P[hot].x - P[o].x) * ph, y = P[o].y + (P[hot].y - P[o].y) * ph; mctx.fillStyle = C.saf; mctx.beginPath(); mctx.arc(x, y, 3.2, 0, 6.29); mctx.fill(); });
+  }
+  [...P.keys()].sort((i, j) => P[j].z - P[i].z).forEach(i => {
+    const p = P[i], r = (p.e === 'C' ? 11 : 12.5) * p.f;
+    mctx.fillStyle = ATC[p.e]; mctx.beginPath(); mctx.arc(p.x, p.y, r, 0, 6.29); mctx.fill();
+    if (molMode === 'gcn' && i === hot){ mctx.strokeStyle = C.maj; mctx.lineWidth = 3; mctx.beginPath(); mctx.arc(p.x, p.y, r + 5 + 3 * Math.sin(molT * 0.2), 0, 6.29); mctx.stroke(); }
+    if (molMode === 'bert'){ const k = Math.floor(molT / 18) % MOL.atoms.length; if (i <= k){ mctx.strokeStyle = C.saf; mctx.lineWidth = 2; mctx.beginPath(); mctx.arc(p.x, p.y, r + 3, 0, 6.29); mctx.stroke(); } }
+    mctx.fillStyle = '#0A0F1F'; mctx.font = `700 ${Math.round(11 * p.f)}px JetBrains Mono, monospace`; mctx.textAlign = 'center'; mctx.textBaseline = 'middle'; mctx.fillText(p.e, p.x, p.y + 0.5);
+  });
+  if (molMode === 'bert'){ const k = Math.floor(molT / 18) % MOL.tok.length; $('#smiles').innerHTML = MOL.tok.map((tk, i) => i === k ? `<span class="hl">${tk}</span>` : tk).join(''); }
+  if (!molDrag && !RM) rotY += 0.004;
+  molT++;
+}
+function setMolCap(){ $('#molCap').textContent = t('m.cap.' + molMode); }
+$$('.seg button[data-m]').forEach(b => b.addEventListener('click', () => { molMode = b.dataset.m; $$('.seg button[data-m]').forEach(x => x.setAttribute('aria-pressed', x === b)); setMolCap(); if (molMode !== 'bert') $('#smiles').textContent = 'CN1C=NC2=C1C(=O)N(C(=O)N2C)C'; if (RM) drawMol(); }));
+mc.addEventListener('pointerdown', e => { molDrag = { x: e.clientX, y: e.clientY }; mc.setPointerCapture(e.pointerId); mc.style.cursor = 'grabbing'; });
+mc.addEventListener('pointermove', e => { if (!molDrag) return; rotY += (e.clientX - molDrag.x) * 0.01; rotX += (e.clientY - molDrag.y) * 0.01; molDrag = { x: e.clientX, y: e.clientY }; if (RM) drawMol(); });
+mc.addEventListener('pointerup', () => { molDrag = null; mc.style.cursor = 'grab'; });
+
+/* ================= Gradient golf ================= */
+const gc = $('#golf'), gctx = gc.getContext('2d');
+let GW = 0, GH = 0, terr, ball, vel = 0, steps = 0, won = false, trail = [];
+function rnd(seed){ return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+const lrOfS = s => +(0.01 * Math.pow(150, s / 100)).toFixed(3);
+/* breadth-first search over η choices: returns the first slider value of the shortest winning sequence */
+function plan(x, v, mom, depth){
+  let level = [{ x, v, s0: -1 }];
+  for (let d = 0; d < depth; d++){
+    const next = new Map();
+    for (const st of level){
+      const g = grad(st.x);
+      for (let s = 0; s <= 100; s += 2){
+        const nv = (mom ? 0.8 * st.v : 0) - lrOfS(s) * g;
+        const nx = Math.max(0, Math.min(10, st.x + nv)), vv = (nx === 0 || nx === 10) ? 0 : nv;
+        const s0 = st.s0 < 0 ? s : st.s0;
+        if (Math.abs(nx - terr.xm) < 0.32) return { s: s0, steps: d + 1 };
+        const key = Math.round(nx * 50) + ':' + (mom ? Math.round(vv * 10) : 0);
+        if (!next.has(key)) next.set(key, { x: nx, v: vv, s0 });
+      }
+    }
+    level = [...next.values()];
+  }
+  return null;
+}
+function newTerrain(seed = Math.floor(Math.random() * 1e9) + 1, tries = 0){
+  const R = rnd(seed); const c = 6 + R() * 2.4;
+  const p = { c, a: 0.07 + R() * 0.03, s1: 0.7 + R() * 0.5, f1: 1.3 + R() * 0.9, p1: R() * 6.28, s2: 0.25 + R() * 0.3, f2: 3 + R() * 1.5, p2: R() * 6.28 };
+  const f = x => p.a * (x - p.c) ** 2 + p.s1 * Math.sin(p.f1 * x + p.p1) + p.s2 * Math.sin(p.f2 * x + p.p2);
+  let xm = 0, fm = Infinity; for (let x = 0; x <= 10; x += 0.002){ const v = f(x); if (v < fm){ fm = v; xm = x; } }
+  if (xm < 3 || xm > 9.6) return newTerrain(seed + 7, tries + 1);
+  let fM = -Infinity; for (let x = 0; x <= 10; x += 0.05) fM = Math.max(fM, f(x));
+  terr = { f, xm, fm, fM };
+  if (tries < 400 && !plan(0.5, 0, false, 3)) return newTerrain(seed + 13, tries + 1);
+  resetBall();
+}
+const grad = x => (terr.f(x + 1e-4) - terr.f(x - 1e-4)) / 2e-4;
+function resetBall(){ ball = 0.5; vel = 0; steps = 0; won = false; trail = [ball]; $('#gSteps').textContent = 0; updLoss(); drawGolf(); }
+const lrVal = () => lrOfS(+$('#lr').value);
+function updLoss(){ $('#gLoss').textContent = (terr.f(ball) - terr.fm).toFixed(3); }
+function sizeGolf(){ const r = gc.getBoundingClientRect(); GW = r.width; GH = r.height; gc.width = GW * DPR; gc.height = GH * DPR; gctx.setTransform(DPR, 0, 0, DPR, 0, 0); drawGolf(); }
+const gx = x => 18 + x / 10 * (GW - 36), gy = v => GH - 26 - (v - terr.fm) / (terr.fM - terr.fm) * (GH - 70);
+function drawGolf(anim){
+  if (!GW) return;
+  gctx.clearRect(0, 0, GW, GH);
+  gctx.strokeStyle = 'rgba(36,48,90,.7)'; gctx.lineWidth = 1;
+  for (let i = 0; i <= 10; i++){ gctx.beginPath(); gctx.moveTo(gx(i), 10); gctx.lineTo(gx(i), GH - 10); gctx.stroke(); }
+  gctx.beginPath(); for (let x = 0; x <= 10; x += 0.02){ const X = gx(x), Y = gy(terr.f(x)); x ? gctx.lineTo(X, Y) : gctx.moveTo(X, Y); }
+  const path = new Path2D(); for (let x = 0; x <= 10; x += 0.02){ const X = gx(x), Y = gy(terr.f(x)); x ? path.lineTo(X, Y) : path.moveTo(X, Y); }
+  const fill = new Path2D(path); fill.lineTo(gx(10), GH); fill.lineTo(gx(0), GH); fill.closePath();
+  const g = gctx.createLinearGradient(0, 0, 0, GH); g.addColorStop(0, 'rgba(76,98,255,.35)'); g.addColorStop(1, 'rgba(76,98,255,0)'); gctx.fillStyle = g; gctx.fill(fill);
+  gctx.strokeStyle = C.maj2; gctx.lineWidth = 2.2; gctx.stroke(path);
+  const fxp = gx(terr.xm), fyp = gy(terr.fm);
+  gctx.fillStyle = 'rgba(244,183,64,.12)'; gctx.fillRect(gx(terr.xm - 0.32), 10, gx(terr.xm + 0.32) - gx(terr.xm - 0.32), GH - 20);
+  gctx.strokeStyle = C.paper; gctx.lineWidth = 1.6; gctx.beginPath(); gctx.moveTo(fxp, fyp); gctx.lineTo(fxp, fyp - 34); gctx.stroke();
+  gctx.fillStyle = C.saf; gctx.beginPath(); gctx.moveTo(fxp, fyp - 34); gctx.lineTo(fxp + 18, fyp - 28); gctx.lineTo(fxp, fyp - 22); gctx.closePath(); gctx.fill();
+  gctx.strokeStyle = 'rgba(244,183,64,.5)'; gctx.setLineDash([3, 4]); gctx.lineWidth = 1.4; gctx.beginPath();
+  trail.forEach((x, i) => { const X = gx(x), Y = gy(terr.f(x)) - 8; i ? gctx.lineTo(X, Y) : gctx.moveTo(X, Y); }); gctx.stroke(); gctx.setLineDash([]);
+  trail.forEach((x) => { gctx.fillStyle = 'rgba(244,183,64,.55)'; gctx.beginPath(); gctx.arc(gx(x), gy(terr.f(x)) - 8, 2.2, 0, 6.29); gctx.fill(); });
+  const bx = anim ? anim.x : ball;
+  gctx.fillStyle = C.paper; gctx.beginPath(); gctx.arc(gx(bx), gy(terr.f(bx)) - 8, 7, 0, 6.29); gctx.fill();
+  gctx.strokeStyle = C.ink; gctx.lineWidth = 1.5; gctx.stroke();
+  gctx.fillStyle = C.muted; gctx.font = '500 11px JetBrains Mono, monospace'; gctx.textAlign = 'left'; gctx.fillText(`x = ${bx.toFixed(2)}   ∇L = ${grad(bx).toFixed(2)}`, 14, 20);
+}
+let golfBusy = false;
+async function golfStep(){
+  if (won || golfBusy) return; golfBusy = true;
+  const lr = lrVal(), g = grad(ball);
+  vel = ($('#mom').checked ? 0.8 * vel : 0) - lr * g;
+  let nx = Math.max(0, Math.min(10, ball + vel)); if (nx === 0 || nx === 10) vel = 0;
+  const x0 = ball, t0 = performance.now(), dur = RM ? 0 : 260;
+  await new Promise(res => { const f = now => { const p = dur ? Math.min(1, (now - t0) / dur) : 1; const e = 1 - Math.pow(1 - p, 3); drawGolf({ x: x0 + (nx - x0) * e }); if (p < 1) requestAnimationFrame(f); else res(); }; requestAnimationFrame(f); });
+  ball = nx; steps++; trail.push(ball); $('#gSteps').textContent = steps; updLoss(); drawGolf();
+  if (Math.abs(ball - terr.xm) < 0.32){
+    won = true; const par = steps <= 6;
+    toast(lang === 'fr' ? (par ? `Birdie ! Minimum global en ${steps} pas` : `Dans le trou en ${steps} pas`) : (par ? `Birdie! Global minimum in ${steps} steps` : `Holed in ${steps} steps`));
+    const b = +store.get('md-golf') || Infinity; if (steps < b){ store.set('md-golf', steps); } $('#gBest').textContent = Math.min(b, steps);
+    burst(gc.getBoundingClientRect().left + gx(ball), gc.getBoundingClientRect().top + gy(terr.fm) - 10, 70);
+  } else if (steps >= 40){ won = true; toast(lang === 'fr' ? 'Coincé dans un minimum local ? Recommence.' : 'Stuck in a local minimum? Restart.'); }
+  golfBusy = false;
+}
+function toast(m){ const el = $('#toast'); el.textContent = m; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 2600); }
+$('#lr').addEventListener('input', () => $('#lrO').textContent = lrVal().toFixed(2));
+$('#stepBtn').addEventListener('click', golfStep);
+$('#runBtn').addEventListener('click', async () => { for (let i = 0; i < 10 && !won; i++){ await golfStep(); } });
+$('#resetBtn').addEventListener('click', resetBall);
+$('#newBtn').addEventListener('click', () => newTerrain());
+$('#hintBtn').addEventListener('click', () => {
+  if (won) return;
+  const mom = $('#mom').checked;
+  let pl = plan(ball, vel, mom, 4), unmom = false;
+  if (!pl && mom){ pl = plan(ball, 0, false, 4); unmom = !!pl; }
+  if (!pl){ toast(lang === 'fr' ? 'Plus de chemin rapide d’ici : clique sur « Recommencer », puis « Indice »' : 'No quick path from here: click “Restart”, then “Hint”'); return; }
+  if (unmom){ $('#mom').checked = false; vel = 0; }
+  const bs = pl.s;
+  $('#lr').value = bs; $('#lrO').textContent = lrVal().toFixed(2);
+  toast((lang === 'fr' ? 'Indice : η = ' + lrVal().toFixed(2) + ', puis « Un pas »' : 'Hint: η = ' + lrVal().toFixed(2) + ', then “One step”'));
+});
+{ const b = store.get('md-golf'); if (b) $('#gBest').textContent = b; }
+
+/* ================= timeline + skills ================= */
+const TL = {
+  fr: [
+    ['2022 - 2024', 'BTS Systèmes et Réseaux Informatiques', 'Lycée Technique Mohammed V, Béni Mellal. Classé dans le top 3 national.', 'loss 1.92'],
+    ['07 - 09 / 2023', 'Stage technicien systèmes et réseaux', 'Laboratoire National des Ressources Numériques : administration de serveurs et de vidéosurveillance, reconditionnement d’équipements IT pour des écoles rurales.', 'loss 1.61'],
+    ['06 - 08 / 2024', 'Stage technicien IT', 'Infodis, Rabat : déploiement et maintenance de serveurs et de postes, support utilisateurs sur site.', 'loss 1.33'],
+    ['2024 - 2025', 'Licence d’Excellence en Intelligence Artificielle', 'Université Hassan II de Casablanca. 2e de promotion, Mention Bien. Prix du Meilleur Projet Innovant pour Carton Compliance Analyzer.', 'loss 0.84'],
+    ['06 / 2025 - auj.', 'Responsable Escalations, IO Solutions', 'Support télécom pour Rogers et Fido (Canada), en anglais. Agent, puis SME, puis Responsable Escalations en moins de 4 mois ; supervision d’équipe par intérim.', 'loss 0.47'],
+    ['2025 - 2027', 'Master d’Excellence en Intelligence Artificielle', 'Université Hassan II de Casablanca : IA agentique, NLP, MLOps, deep learning. AgentForge, PipelineForge et la prédiction moléculaire viennent de là.', 'loss 0.19'],
+    ['2027', 'Stage de fin d’études', 'L’epoch suivante : 4 à 6 mois en IA, Data Science ou IA générative, à Casablanca ou Rabat.', 'loss → 0.02 ?']
+  ],
+  en: [
+    ['2022 - 2024', 'BTS in IT Systems and Networks', 'Lycée Technique Mohammed V, Béni Mellal. Ranked in the national top 3.', 'loss 1.92'],
+    ['07 - 09 / 2023', 'Systems and networks technician intern', 'National Digital Resources Laboratory: server and CCTV administration, refurbishing IT equipment for rural schools.', 'loss 1.61'],
+    ['06 - 08 / 2024', 'IT technician intern', 'Infodis, Rabat: deploying and maintaining servers and workstations, on-site user support.', 'loss 1.33'],
+    ['2024 - 2025', 'Licence of Excellence in Artificial Intelligence', 'Hassan II University, Casablanca. 2nd in class, with honours. Best Innovative Project award for Carton Compliance Analyzer.', 'loss 0.84'],
+    ['06 / 2025 - now', 'Escalations Lead, IO Solutions', 'Telecom support for Rogers and Fido (Canada), in English. Agent, then SME, then Escalations Lead in under 4 months; interim team supervision.', 'loss 0.47'],
+    ['2025 - 2027', 'Master of Excellence in Artificial Intelligence', 'Hassan II University, Casablanca: agentic AI, NLP, MLOps, deep learning. AgentForge, PipelineForge and the molecular project come from here.', 'loss 0.19'],
+    ['2027', 'Final-year internship', 'The next epoch: 4 to 6 months in AI, Data Science or generative AI, in Casablanca or Rabat.', 'loss → 0.02 ?']
+  ]
+};
+function buildTimeline(){ $('#tl').innerHTML = TL[lang].map((e, i, a) => `<div class="ep rv${i === a.length - 1 ? ' next' : ''}"><div class="knot">${i + 1}</div><div class="when">${e[0]}</div><div class="what"><h4>${e[1]}</h4><p>${e[2]}</p><div class="loss">${e[3]}</div></div></div>`).join(''); observe($$('#tl .rv')); }
+const SK = {
+  fr: [['IA et Machine Learning', 'Machine Learning, Deep Learning, NLP, Computer Vision, PyTorch, TensorFlow, Scikit-learn, XGBoost, LightGBM, Hugging Face, SHAP'], ['IA générative et agents', 'LLM, RAG, agents IA, systèmes multi-agent, LangGraph, LangChain, tool calling, prompt engineering, FAISS, Chroma, BM25'], ['Data et BI', 'Python, Pandas, NumPy, SQL, MongoDB, ETL, Prefect, Hadoop, Spark, web scraping, Tableau, Power BI, Plotly'], ['Développement et MLOps', 'FastAPI, Flask, API REST, Streamlit, HTML, CSS, Git, Pytest, Docker, Kubernetes, CI/CD, MLflow, Linux, Agile / Scrum']],
+  en: [['AI and Machine Learning', 'Machine Learning, Deep Learning, NLP, Computer Vision, PyTorch, TensorFlow, Scikit-learn, XGBoost, LightGBM, Hugging Face, SHAP'], ['Generative AI and agents', 'LLM, RAG, AI agents, multi-agent systems, LangGraph, LangChain, tool calling, prompt engineering, FAISS, Chroma, BM25'], ['Data and BI', 'Python, Pandas, NumPy, SQL, MongoDB, ETL, Prefect, Hadoop, Spark, web scraping, Tableau, Power BI, Plotly'], ['Development and MLOps', 'FastAPI, Flask, REST APIs, Streamlit, HTML, CSS, Git, Pytest, Docker, Kubernetes, CI/CD, MLflow, Linux, Agile / Scrum']]
+};
+function buildSkills(){ $('#skills').innerHTML = SK[lang].map(([h, s]) => `<div class="sk rv"><h4>${h}</h4><div class="chips">${s.split(', ').map(x => `<span class="chip">${x}</span>`).join('')}</div></div>`).join(''); observe($$('#skills .rv')); }
+
+/* ================= reveal ================= */
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; e.target.classList.add('in'); io.unobserve(e.target);
+  if (e.target.id === 'pfCount' && !pfCounted){ pfCounted = true; countUp(e.target, 700, RM ? 1 : 1800); }
+}), { rootMargin: '0px 0px -8% 0px' }) : null;
+function observe(els){ if (io) els.forEach(el => io.observe(el)); }
+observe($$('.rv')); if (io) io.observe($('#pfCount')); else $('#pfCount').textContent = '700';
+
+/* ================= copy mail ================= */
+$('#copyMail').addEventListener('click', async e => {
+  const b = e.currentTarget;
+  try { await navigator.clipboard.writeText('daoukimarouane@gmail.com'); b.textContent = t('ct.copied'); }
+  catch(err){ const r = document.createRange(); r.selectNodeContents($('#mail')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = lang === 'fr' ? 'Sélectionnée, Ctrl+C' : 'Selected, Ctrl+C'; }
+  setTimeout(() => b.textContent = t('ct.copy'), 2200);
+});
+
+/* ================= confetti (zellige stars) ================= */
+const fx = $('#fx'), fctx = fx.getContext('2d'); let parts = [];
+function sizeFx(){ fx.width = innerWidth * DPR; fx.height = innerHeight * DPR; fctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+function burst(x, y, n = 120){ if (RM) return; const cols = [C.saf, C.maj, C.maj2, C.paper, C.good]; for (let i = 0; i < n; i++){ const a = Math.random() * 6.28, s = 2 + Math.random() * 7; parts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 3, r: 3 + Math.random() * 5, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, c: cols[i % cols.length], life: 1 }); } }
+function star(c, r){ c.beginPath(); for (let i = 0; i < 16; i++){ const rr = i % 2 ? r * 0.55 : r; const a = i * Math.PI / 8; c.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } c.closePath(); c.fill(); }
+function drawFx(){ if (!parts.length) return; fctx.clearRect(0, 0, innerWidth, innerHeight); parts = parts.filter(p => { p.vy += 0.18; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= 0.009; if (p.life <= 0 || p.y > innerHeight + 20) return false; fctx.save(); fctx.translate(p.x, p.y); fctx.rotate(p.rot); fctx.globalAlpha = Math.min(1, p.life * 1.5); fctx.fillStyle = p.c; star(fctx, p.r); fctx.restore(); return true; }); if (!parts.length) fctx.clearRect(0, 0, innerWidth, innerHeight); }
+
+/* ================= terminal ================= */
+const term = $('#term'), tout = $('#termOut'), tin = $('#termIn'); const histC = []; let hI = 0;
+const out = (h, cls = '') => { tout.insertAdjacentHTML('beforeend', `<div class="${cls}">${h}</div>`); tout.scrollTop = tout.scrollHeight; };
+const go = id => { document.getElementById(id).scrollIntoView({ behavior: RM ? 'auto' : 'smooth' }); };
+const CMDS = {
+  help: () => out(lang === 'fr'
+    ? 'commandes :\n  <span class="p">whoami</span>      qui est Marouane\n  <span class="p">projects</span>    liste des projets\n  <span class="p">open</span> &lt;n&gt;    aller au projet n (1 à 7)\n  <span class="p">skills</span>      compétences\n  <span class="p">contact</span>     me joindre\n  <span class="p">train</span>       entraîner le réseau du hero\n  <span class="p">golf</span>        jouer au golf du gradient\n  <span class="p">lang</span> fr|en  changer de langue\n  <span class="p">sudo hire marouane</span>\n  <span class="p">clear</span> · <span class="p">exit</span>'
+    : 'commands:\n  <span class="p">whoami</span>      who is Marouane\n  <span class="p">projects</span>    list projects\n  <span class="p">open</span> &lt;n&gt;    jump to project n (1 to 7)\n  <span class="p">skills</span>      skills\n  <span class="p">contact</span>     reach me\n  <span class="p">train</span>       train the hero network\n  <span class="p">golf</span>        play gradient golf\n  <span class="p">lang</span> fr|en  switch language\n  <span class="p">sudo hire marouane</span>\n  <span class="p">clear</span> · <span class="p">exit</span>'),
+  whoami: () => out(lang === 'fr' ? 'Marouane Daouki · Master 2 IA, Université Hassan II de Casablanca.\nAgents IA, RAG, vision, data science. Responsable Escalations en anglais à côté.\nCherche un PFE de 4 à 6 mois, début 2027, Casablanca / Rabat.' : 'Marouane Daouki · Master 2 in AI, Hassan II University, Casablanca.\nAI agents, RAG, vision, data science. Escalations Lead in English on the side.\nLooking for a 4 to 6 month internship, early 2027, Casablanca / Rabat.'),
+  projects: () => out(['1  AgentForge            multi-agent credit audit', '2  Qannouni              RAG legal assistant', '3  Carton Analyzer       YOLOv8 + OpenCV', '4  PipelineForge         data pipeline + RAG', '5  Molecular prediction  GNN vs Transformer', '6  Car price predictor   scraping + XGBoost', '7  DevOps lab            Docker, K8s, Terraform'].join('\n'), 'b'),
+  open: a => { const ids = ['agentforge', 'qannouni', 'carton', 'pipelineforge', 'molecules', 'projets', 'projets']; const n = parseInt(a[0], 10); if (n >= 1 && n <= 7){ go(n >= 6 ? 'labo' : ids[n - 1]); if (n >= 6) setTimeout(() => $('.also').scrollIntoView({ behavior: 'smooth', block: 'center' }), 50); out('→ ' + n, 'g'); } else out('usage: open 1..7', 'm'); },
+  skills: () => out(SK[lang].map(([h, s]) => `<span class="p">${h}</span>\n  ${s}`).join('\n')),
+  contact: () => out('email    daoukimarouane@gmail.com\nlinkedin linkedin.com/in/daouki-marouane\ngithub   github.com/shirahex'),
+  train: () => { go('top'); if (!training) toggleTrain(); out(lang === 'fr' ? 'entraînement lancé…' : 'training started…', 'g'); },
+  golf: () => { go('labo'); out('⛳', 'g'); },
+  lang: a => { if (a[0] === 'en' || a[0] === 'fr'){ applyLang(a[0]); out('ok', 'g'); } else out('usage: lang fr|en', 'm'); },
+  sudo: a => { if (a.join(' ') === 'hire marouane'){ out(lang === 'fr' ? '[sudo] mot de passe : ********\nAccès accordé. Envoi de la demande d’entretien… <span class="g">ok</span>\nProchaine étape : écrire à daoukimarouane@gmail.com' : '[sudo] password: ********\nAccess granted. Sending interview request… <span class="g">ok</span>\nNext step: email daoukimarouane@gmail.com'); burst(innerWidth / 2, innerHeight / 2, 180); } else out('sudo: ' + (lang === 'fr' ? 'permission refusée. Essaie « sudo hire marouane »' : 'permission denied. Try “sudo hire marouane”'), 'm'); },
+  clear: () => tout.innerHTML = '',
+  exit: () => closeTerm(),
+  ls: () => out('agentforge/  qannouni/  carton-analyzer/  pipelineforge/  molecules/  car-price/  devops-lab/  cv.pdf', 'b'),
+  'cat': a => out(a[0] === 'cv.pdf' ? (lang === 'fr' ? 'binaire illisible ici : demande-moi le CV par email.' : 'binary file: ask me for the CV by email.') : 'cat: ' + (a[0] || '?') + ': no such file', 'm')
+};
+function openTerm(){ term.hidden = false; if (!tout.innerHTML) out(lang === 'fr' ? 'Bienvenue. Tape <span class="p">help</span> pour la liste des commandes.' : 'Welcome. Type <span class="p">help</span> for the list of commands.', 'm'); tin.focus(); }
+function closeTerm(){ term.hidden = true; $('#termBtn').focus(); }
+$('#termBtn').addEventListener('click', () => term.hidden ? openTerm() : closeTerm());
+$('#termClose').addEventListener('click', closeTerm);
+$('#termForm').addEventListener('submit', e => {
+  e.preventDefault(); const v = tin.value.trim(); tin.value = ''; if (!v) return; histC.push(v); hI = histC.length;
+  out(`<span class="p">❯</span> ${v.replace(/</g, '&lt;')}`);
+  const [c, ...a] = v.toLowerCase().split(/\s+/); (CMDS[c] || (() => out((lang === 'fr' ? 'commande inconnue : ' : 'command not found: ') + c.replace(/</g, '&lt;') + (lang === 'fr' ? ' · essaie help' : ' · try help'), 'm')))(a);
+});
+tin.addEventListener('keydown', e => { if (e.key === 'ArrowUp' && hI > 0){ tin.value = histC[--hI]; e.preventDefault(); } if (e.key === 'ArrowDown'){ hI = Math.min(histC.length, hI + 1); tin.value = histC[hI] || ''; } });
+
+/* ================= keyboard ================= */
+const KON = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']; let kI = 0;
+addEventListener('keydown', e => {
+  const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) && document.activeElement.type !== 'range' && document.activeElement.type !== 'checkbox';
+  if (e.key === 'Escape'){ if (!term.hidden) closeTerm(); $('#lb').hidden = true; }
+  if (e.key === KON[kI] || e.key.toLowerCase() === KON[kI]){ kI++; if (kI === KON.length){ kI = 0; burst(innerWidth / 2, innerHeight / 3, 260); toast2(); } } else kI = e.key === 'ArrowUp' ? 1 : 0;
+  if (typing) return;
+  if (e.key === '`' || e.key === '²'){ e.preventDefault(); term.hidden ? openTerm() : closeTerm(); }
+  if ((e.key === 't' || e.key === 'T') && term.hidden) toggleTrain();
+  if (e.code === 'Space' && term.hidden){ const r = $('#golf').getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0){ e.preventDefault(); golfStep(); } }
+});
+function toast2(){ const el = document.createElement('div'); el.className = 'toast show'; el.style.position = 'fixed'; el.style.zIndex = 95; el.textContent = lang === 'fr' ? 'Code Konami : mode zellige activé ✦' : 'Konami code: zellige mode on ✦'; document.body.appendChild(el); $$('.zl').forEach(z => z.style.opacity = '.35'); setTimeout(() => { el.remove(); $$('.zl').forEach(z => z.style.opacity = ''); }, 4000); }
+
+/* ================= loop ================= */
+let visHero = true, visMol = false, visPipe = false;
+if (io){ new IntersectionObserver(es => es.forEach(e => { if (e.target.id === 'top') visHero = e.isIntersecting; if (e.target.id === 'mol') visMol = e.isIntersecting; if (e.target.id === 'pipeSvg') visPipe = e.isIntersecting; })).observe($('#top')); }
+const vo = new IntersectionObserver(es => es.forEach(e => { if (e.target.id === 'mol') visMol = e.isIntersecting; if (e.target.id === 'pipeSvg') visPipe = e.isIntersecting; }));
+vo.observe($('#mol')); vo.observe($('#pipeSvg'));
+let lastPk = 0;
+function loop(ts){
+  if (visHero) drawNet(ts);
+  if (visMol) drawMol();
+  if (visPipe){ if (ts - lastPk > 1500){ spawnPk(); lastPk = ts; } tickPk(); }
+  parallax(); drawFx();
+  requestAnimationFrame(loop);
+}
+function onResize(){ DPR = Math.min(2, devicePixelRatio || 1); sizeNet(); sizeMol(); sizeGolf(); sizeFx(); scanH(); hud(); drawSpark($('#lossSpark'), lossHist, C.saf); if (RM) drawMol(); }
+addEventListener('resize', onResize);
+addEventListener('scroll', hud, { passive: true });
+
+/* ================= boot ================= */
+sizeNet(); initNodes(); newTerrain(20261121); sizeMol(); sizeGolf(); sizeFx(); scanH();
+showDemoVals(); buildTimeline(); buildSkills(); typedReset(); renderChat('fr'); hud();
+{ const l = store.get('md-lang'); if (l === 'en') applyLang('en'); }
+$('#lrO').textContent = lrVal().toFixed(2);
+if (RM){ drawNet(0); drawMol(); } else requestAnimationFrame(loop);
+</script>
+</body>
+</html>
